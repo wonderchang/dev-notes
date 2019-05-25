@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/plantuml/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>PlantUML - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/plantuml.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#plantuml">PlantUML</a></li>
+            <li class="second-level"><a href="#powered-by">應用實例</a></li>
+                
+            <li class="second-level"><a href="#reference">新手上路 ??</a></li>
+                
+            <li class="second-level"><a href="#note-title-caption-header-footer">Note, Title / Caption, Header / Footer ??</a></li>
+                
+            <li class="second-level"><a href="#line-arrow">Line, Arrow ??</a></li>
+                
+            <li class="second-level"><a href="#rendering">Rendering ??</a></li>
+                
+            <li class="second-level"><a href="#cli">CLI ??</a></li>
+                
+            <li class="second-level"><a href="#class-diagram">Class Diagram</a></li>
+                
+            <li class="second-level"><a href="#state-diagram">State Diagram ??</a></li>
+                
+            <li class="second-level"><a href="#wireframe-salt">Wireframe (Salt) ??</a></li>
+                
+            <li class="second-level"><a href="#mindmap-diagram">MindMap Diagram ??</a></li>
+                
+            <li class="second-level"><a href="#png-metadata">PNG Metadata ??</a></li>
+                
+            <li class="second-level"><a href="#installation">安裝設定</a></li>
+                
+                <li class="third-level"><a href="#docker">Docker ??</a></li>
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="plantuml">PlantUML<a class="headerlink" href="#plantuml" title="Permanent link"> #</a></h1>
+<ul>
+<li><a href="http://plantuml.com/index">Open-source tool that uses simple textual descriptions to draw UML diagrams.</a><ul>
+<li>PlantUML is a component that allows to quickly write : Sequence diagram, Usecase diagram, Class diagram, Activity diagram, Component diagram, State diagram, Object diagram, Deployment diagram, Timing diagram (不同於一般的 timeline，但也是 UML 標準圖形之一)</li>
+<li>The following non-UML diagrams are also supported: Wireframe graphical interface, Archimate?? diagram, Specification and Description Language (SDL), Ditaa diagram, Gantt diagram, Mathematic with <a href="http://asciimath.org/">AsciiMath</a> or <a href="https://github.com/opencollab/jlatexmath">JLaTeXMath</a> notation 沒想過有支持這些!! 2019-03-01 也開始支援 MindMap 了</li>
+<li>Diagrams are defined using a simple and intuitive language. (see PlantUML Language Reference Guide). Images can be generated in PNG, in SVG or in LaTeX format. It is also possible to generate ASCII art diagrams (only for sequence diagrams). 轉成 LaTeX 是什麼概念?? 為什麼 <a href="https://www.planttext.com/">PlantText UML Editor</a> 不是 sequence diagram 也可以轉 TXT??</li>
+</ul>
+</li>
+</ul>
+<h2 id="powered-by">應用實例<a class="headerlink" href="#powered-by" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/running">Tools using the PlantUML language</a></li>
+</ul>
+<h2 id="reference">新手上路 ??<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="http://plantuml.com/commons">General and common command to handle graphic layout in diagrams.</a> #ril</p>
+<ul>
+<li>Comments &ndash; Everything that starts with simple quote <code>'</code> is a comment. You can also put comments on several lines using <code>/'</code> to start and <code>'/</code> to end. 好奇特的語法!! 想到 <code>~/.vimrc</code> 是用 <code>"</code> 來當註解。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://plantuml.com/starting">Quick Start Guide</a> #ril</p>
+</li>
+<li><a href="http://plantuml.com/faq">Frequently Asked Questions</a> #ril</li>
+</ul>
+<h2 id="note-title-caption-header-footer">Note, Title / Caption, Header / Footer ??<a class="headerlink" href="#note-title-caption-header-footer" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/commons">Footer and header - General and common command to handle graphic layout in diagrams.</a> #ril<ul>
+<li>You can use the commands <code>header</code> or <code>footer</code> to add a footer or a header on any generated diagram.</li>
+<li>You can optionally specify if you want a <code>center</code>, <code>left</code> or <code>right</code> footer/header, by adding a keyword.</li>
+<li>As for title, it is possible to define a header or a footer on several lines. 跟 <code>header</code>/<code>footer</code> command 相連的幾行，都會被視為內容；但 title 有另一個 command 不是??</li>
+<li>
+<p>It is also possible to put some HTML into the header or footer. (通常是為了控制顏色)</p>
+<pre><code>@startuml
+Alice -&gt; Bob: Authentication Request
+
+header
+&lt;font color=red&gt;Warning:&lt;/font&gt;
+Do not use in production.
+endheader
+
+center footer Generated for demonstration
+
+@enduml
+</code></pre>
+<p><img alt="" src="http://s.plantuml.com/imgw/commons-nfzmdfkb.webp" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="line-arrow">Line, Arrow ??<a class="headerlink" href="#line-arrow" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/48712801/">uml - How to correct PlantUML Line Path - Stack Overflow</a></p>
+<ul>
+<li>
+<p>Peter Uhnak: There are some tricks that you can try, listed below. The layouting itself is performed by GraphViz (dot layouting iirc), and GraphViz simply does this sometimes. Graph layouting is a NP-complete problem, so algorithms usually take HARSH SHORTCUTS. 許多問答都提到線條怎麼走，都是背後 Graphviz 在決定。</p>
+<p>Typical workarounds that I&rsquo;ve seen or used include:</p>
+<ul>
+<li>adding hidden lines <code>a -[hidden]- b</code></li>
+<li>extending the length of a line <code>a --- b</code> (more dashes, longer line)</li>
+<li>specifying PREFERRED DIRECTION of lines (<code>a -left- b</code>)</li>
+<li>swapping association ends (<code>a -- b</code> → <code>b -- a</code>)</li>
+<li>changing the order of definitions (THE ORDER DOES MATTER&hellip; sometimes)</li>
+<li>adding empty nodes with background/border colors set to Transparent (這太 tricky!!)</li>
+</ul>
+<p>So if you really want to have a nice layout, you&rsquo;ll need to put some elbow grease in, but keep in mind that the layout will be still BRITTLE &ndash; if you add/remove items, you might need to redo it again. 因為組成不同，可能又要再調一次。</p>
+</li>
+<li>
+<p>Nikhil: Try the options suggested by @Peter Uhnak along with linetype :</p>
+<pre><code>skinparam linetype polyline (折線)
+skinparam linetype ortho    (轉直角)
+</code></pre>
+<p>Give better options for lines. Using ortho</p>
+<p>aSamWow: Good idea, it does fix the problem, but Ortho lines MESS UP LABELS in plant UML so I try to avoid them for more complex diagrams. 可惜，真的 label 都會跑掉</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="http://mrhaki.blogspot.com/2018/06/plantuml-pleasantness-setting-arrow.html">PlantUML Pleasantness: Setting Arrow Directions - Messages from mrhaki</a> (2018-06-05) #ril</p>
+</li>
+<li><a href="http://mrhaki.blogspot.com/2016/12/plantuml-pleasantness-change-line-style.html">PlantUML Pleasantness: Change Line Style And Color - Messages from mrhaki</a> (2016-12-14) #ril</li>
+<li><a href="http://mrhaki.blogspot.com/2017/10/plantuml-pleasantness-layout-elements.html">PlantUML Pleasantness: Layout Elements With Hidden Lines - Messages from mrhaki</a> (2017-10-18) #ril</li>
+</ul>
+<h2 id="rendering">Rendering ??<a class="headerlink" href="#rendering" title="Permanent link"> #</a></h2>
+<p>常用的指令：</p>
+<ul>
+<li>灰階輸出 &ndash; <code>skinparam monochrome true</code></li>
+<li>線條走直線且轉直角 &ndash; <code>skinparam linetype ortho</code></li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li><a href="http://plantuml.com/skinparam">Changing colors and fonts</a> #ril</li>
+</ul>
+<h2 id="cli">CLI ??<a class="headerlink" href="#cli" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/command-line">call it from your script using command line</a> 主要在講 <code>skinparam</code> 的用法 #ril</li>
+</ul>
+<h2 id="class-diagram">Class Diagram<a class="headerlink" href="#class-diagram" title="Permanent link"> #</a></h2>
+<ul>
+<li>Class Diagram syntax and features <a href="http://plantuml.com/class-diagram">http://plantuml.com/class-diagram</a> #ril</li>
+<li>Stereotype 的用途?? 感覺像是個 tag? <a href="https://en.wikipedia.org/wiki/Stereotype_(UML">https://en.wikipedia.org/wiki/Stereotype_(UML</a>) #ril</li>
+<li>說 type name 有 non-letter 可以用雙引號括起來，但 <code>class "RecyclerView.Adapter"</code> 還是會被解讀為 package/namespace?? =&gt; 暫時改用 <code>class "RecyclerView$Adapter"</code> 可以，但這只適用 Java。</li>
+<li>要如何在 relationship 的 label 用 stereotype? =&gt; 直接用 <code>&lt;&lt;{stereotype}&gt;&gt;</code> 即可，例如 <code>Calculator --&gt; Adder : &lt;&lt;use&gt;&gt;</code>。</li>
+<li>Class 若不需要 attribute、operation，可以不要畫線條嗎? =&gt; <code>hide empty members</code>，不過如果有任何 member (attribute/operation) 就會有框線，若要分開控制，可以同時設定 <code>hide empty attributes</code> 及 <code>hide empty methods</code></li>
+<li>怎麼給定參數及它的型態? =&gt; <a href="http://www.uml-diagrams.org/operation.html">http://www.uml-diagrams.org/operation.html</a> 寫成 <code>+executeQuery(sql: String) : ResultSet</code>。</li>
+<li>預設會用 icon 來表示 member visibility，其實不那麼直覺? =&gt; 可以用 <code>skinparam classAttributeIconSize 0</code> 改用文字符號。</li>
+<li>採用 <code>{ ... }</code> 表示法時，習慣內容 2 格。</li>
+<li>Method parameter 比較多時寫成一行，會讓 box 變得很長? =&gt; 可以用 <code>\n</code> 後面將上內縮，例如 <code>+do(String arg1,\n    String arg2,\n   String arg3)</code></li>
+<li>有時候排版結果不是想要的，要如何調整?? =&gt; <a href="http://plantuml.com/class-diagram#layout">http://plantuml.com/class-diagram#layout</a> 用 <code>together { ... }</code> 讓幾個 class 排在一起，線條的方向也可以 <code>A -down-&gt; B</code> 的方式指定 (建議少用)</li>
+<li>如何調整特定 class box 的顏色? =&gt; <a href="http://plantuml.com/class-diagram#gradient">http://plantuml.com/class-diagram#gradient</a> 在 class name 後面用 <code>#</code> 帶出色碼，可以是 <a href="http://plantuml.com/color">standard color name</a>、HEX (<code>#AABBCC</code>) 或 short HEX (<code>ABC</code>)，例如 <code>class FooBar &lt;&lt;mocked&gt;&gt; #dcdcdc</code></li>
+<li>怎麼畫跟 factory 相依，又從 factory 拿到真正的 dependency??<ul>
+<li>目前確認 client 分別往 factory 與 product 有 dependency，前者標 <code>&lt;&lt;use&gt;&gt;</code>，後者寫 &ldquo;ask &hellip;&rdquo; (有點多餘)，而 factory 往 product 也有個 dependency，標上 <code>&lt;&lt;create&gt;&gt;</code></li>
+<li><a href="http://www.uml-diagrams.org/design-pattern-abstract-factory-uml-class-diagram-example.html">http://www.uml-diagrams.org/design-pattern-abstract-factory-uml-class-diagram-example.html</a> client use factory, factory create product, client use product</li>
+<li><a href="http://www.oodesign.com/factory-pattern.html">http://www.oodesign.com/factory-pattern.html</a> client -&gt; factory (ask for a new object), factory -&gt; product (create), client -&gt; product (use) 為什麼線條都跟標準不太一樣??</li>
+</ul>
+</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>
+<p><a href="http://plantuml.com/class-diagram">Class Diagram syntax and features</a> #ril</p>
+<ul>
+<li>有些表示法似乎不是 UML 標準，例如箭頭的樣式，這邊就先略過。</li>
+<li>文字描述用 <code>@startuml</code> &hellip; <code>@enduml</code> 包起來。</li>
+<li>線條用 <code>--</code> (實線) 或 <code>..</code> (虛線) 表示，兩側可以分別加上箭頭；表示法有 <code>&gt;</code> (開放箭頭)、<code>|&gt;</code> (空心三角形)、<code>*</code> (實心菱形)、<code>o</code> (空心菱形)，例如 <code>ServiceImpl ..|&gt; Service</code>，表示一個 relationship</li>
+<li>線條兩側的 cardinality (個數)，可以在線條的兩側用雙引號表示，例如 <code>Pond "0..1" o-- "0..*" Duck</code>，而線條本身的 label 則是在 relationship 後面用 <code>:</code> 帶出 label，例如 <code>ServiceImpl ..|&gt; Service : implements</code></li>
+<li>若想控制 relationship 線條的方向，可以在線條符號間加上 <code>left/right/up/down</code>，例如 <code>ServiceImpl .down.|&gt; Service</code> 就能影響 PlantUML 的 layout；背後其實用 Graphviz 在畫，所以這功能少用，預設都能得到不錯的結果。</li>
+<li>要宣告 field 或 method，可以在 class name 後面加 field/method name，例如 <code>Object : equals()</code>、<code>ArrayList : Object[] elementData</code><ul>
+<li>後面有 <code>()</code> 視為 method，否則視為 field。</li>
+<li><code>:</code> 後面有一個元素時，視為 member，有兩個元素時視為 type 跟 member，例如 <code>User : name</code> 或 <code>User : String name</code>，要指定 visibility 時，符號要加在第一個元素前，例如 <code>User : -String name</code> 而非 <code>User : String -name</code>。</li>
+</ul>
+</li>
+<li>
+<p>上面的方法每一個 field/method 都要條列一次，用另一種 <code>{ ... }</code> 把所有 field/method 框起來的寫法會比較簡潔，例如：(習慣內縮 2 個字元)</p>
+<pre><code>class Dummy {
+  String data
+  void methods()
+}
+class Flight {
+  flightNumber : Integer
+  departureTime : Date
+}
+</code></pre>
+</li>
+<li>
+<p>Abstract class 可以用 <code>abstract (class)</code> 表示，例如 <code>abstract class AbstractDummy</code> 或 <code>abstract AbstractDummy</code>。</p>
+</li>
+<li>其中 <code>class</code> 也可以改用 <code>interface</code>、<code>annotation</code>、<code>enum</code> 等；專用於 Java??</li>
+<li>Type 有兩種寫法，寫在前面用空白分開，寫在後面用 <code>:</code> 分開，後者似乎比較方便，因為有些時候並不想寫明 type，更何況 <a href="http://www.uml-diagrams.org/operation.html">UML Operation</a> 的表示法也都是 <code>member : type</code>。</li>
+<li>Member 可以用標準的符號 (<code>-</code>、<code>#</code>、<code>~</code>、<code>+</code>) 指定 visibility，例如 <code>+getName() : String</code></li>
+<li>Static 或 abstract member 可以分別用 <code>{static}</code> (或 <code>{classifier}</code>) 及 <code>{abstract}</code> modifier 來表示，例如 <code>{static} currentTimeMillis() : long</code>。</li>
+<li>預設會將 member 依 fields 或 methods 分群，但可以用分隔字元 (separator) 手動分群，分隔字元可以是 <code>--</code> 或 <code>__</code> (實線)、<code>..</code> (虛線)、<code>==</code> (雙實線)。線條上可以標上 label，例如 <code>-- Batch Operations --</code></li>
+<li>Stereotype 只能搭配 <code>class</code> 使用，例如 <code>class Object &lt;&lt; {stereotype} &gt;&gt;</code>，不知道 stereotype 用在哪?? 擠在最上面那個區塊不是很好看&hellip; 雖然 <code>&lt;&lt;</code> 的右側跟 <code>&gt;&gt;</code> 的左側都有空白，但那不是必須的。</li>
+<li>
+<p>Note 宣告的方式有很多種：</p>
+<ul>
+<li><code>note left/right/top/bottom of {type} : {text}</code>，例如 <code>note top of Object : In java, every class\nextends this one.</code> (換行用 <code>\n</code> 表示)</li>
+<li><code>note left/right/top/bottom : {text}</code> - 跟最後一個定義的 type 關聯，效果同上面的寫法，例如 <code>class Foo (換行) note left: On last defined class</code>。</li>
+<li>
+<p><code>note "{text}" as {name}</code>，例如 <code>note "This is a floating note" as N1</code>，之後可以用 <code>{type} .. {note}</code> 或 <code>{note} .. {type}</code> 將 type 與 note 連起來。</p>
+<pre><code>note "This note is connected\nto several objects." as N2
+Object .. N2
+N2 .. ArrayList
+</code></pre>
+</li>
+<li>
+<p>文字有多行可以用 <code>note left/right/top/bottom of {type} ... end note</code> 或 <code>note as {name} ... end note</code> 表示 (第一行 <code>note ...</code> 結尾沒有冒號)</p>
+<pre><code>note top of Object
+  In java, &lt;size:18&gt;every&lt;/size&gt; &lt;u&gt;class&lt;/u&gt;
+  &lt;b&gt;extends&lt;/b&gt;
+  &lt;i&gt;this&lt;/i&gt; one.
+end note
+note as N1
+  This note is &lt;u&gt;also&lt;/u&gt;
+  &lt;b&gt;&lt;color:royalBlue&gt;on several&lt;/color&gt;
+  &lt;s&gt;words&lt;/s&gt; lines
+  And this is hosted by &lt;img:sourceforge.jpg&gt;
+end note
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Note 也可以加在 relationship 的線條上，在 relationship 後加上 <code>note (left/right/top/bottom) on link ({color}) : {text}</code> 或 <code>note (left/right/top/bottom) on link ({color}) ... {text} ... end note</code>，例如：</p>
+<pre><code>class Dummy
+Dummy --&gt; Foo : A link
+note on link #red: note that is red
+Dummy --&gt; Foo2 : Another link
+note right on link #blue
+    this is my note on right link
+    and in blue
+end note
+</code></pre>
+</li>
+<li>
+<p>Package 可以用 <code>package {name} ({color}) { ... }</code> 定義，例如</p>
+<pre><code>package net.sourceforge.plantuml {
+  Object &lt;|-- Demo1
+  Demo1 *- Demo2
+}
+</code></pre>
+</li>
+<li>
+<p>使用 package 時，相同名稱的 type 最多只能出現在一個 package 裡，但 namespace 沒有這個限制。</p>
+<ul>
+<li>要引用不同 namespace 的 type，必須使用 fully qualified name，如果是 default namespace，則用 <code>.</code> 來表示。</li>
+<li>在同一個 namespace 裡相互引用，不需要加 namespace。例如：<pre><code>class BaseClass
+
+namespace net.dummy #DDDDDD {
+    .BaseClass &lt;|-- Person
+    Meeting o-- Person
+
+    .BaseClass &lt;|- Meeting
+}
+
+namespace net.foo {
+  net.dummy.Person  &lt;|- Person
+  .BaseClass &lt;|-- Person
+
+  net.dummy.Meeting o-- Person
+}
+
+BaseClass &lt;|-- net.unused.Person
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>表現 class 實作某個 interface 時，標準的寫法是 <code>{class} ..|&gt; {interface}</code>，但如果 interface 一多時，可以改用 lollipop 的寫法 - <code>{class} --() {interface}</code>，比較簡潔；不過這種寫法，interface 就不能再被別人參照。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="state-diagram">State Diagram ??<a class="headerlink" href="#state-diagram" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="http://plantuml.com/state-diagram">State Diagram syntax and features</a> #ril</p>
+<p>Simple State</p>
+<ul>
+<li>
+<p>You can use <code>[*]</code> for the starting point (也就是 initial transition 的起點) and ending point of the state diagram. Use <code>--&gt;</code> for arrows. 其中 <code>[*]</code> 會因為在箭頭的起點或結尾而有不同的表現方式：</p>
+<p>涉及 <code>[*]</code> 的箭頭用 <code>--&gt;</code>，其餘用 <code>-&gt;</code>? 似乎是慣例，兩者的差別只有箭頭的長度 &ndash; <code>--&gt;</code> 是 <code>-&gt;</code> 的 2 倍長。</p>
+<pre><code>@startuml
+
+[*] --&gt; State1
+State1 --&gt; [*]
+State1 : this is a string &lt;-- 冒號前後不一定要有空白，但這樣比較好讀
+State1 : this is another string
+
+State1 -&gt; State2
+State2 --&gt; [*]
+
+@enduml
+</code></pre>
+<p><img alt="" src="http://s.plantuml.com/imgw/state-diagram-8fezmvpq.webp" /></p>
+</li>
+</ul>
+<p>Change state rendering</p>
+<ul>
+<li>
+<p>You can use hide empty description to render state as simple box. 不過慣例上好像還是會畫出來??</p>
+<pre><code>@startuml
+hide empty description
+[*] --&gt; State1
+State1 --&gt; [*]
+State1 : this is a string
+State1 : this is another string
+
+State1 -&gt; State2
+State2 --&gt; [*]
+@enduml
+</code></pre>
+<p><img alt="" src="http://s.plantuml.com/imgw/state-diagram-sfo60qtl.webp" /></p>
+</li>
+</ul>
+<p>Composite state</p>
+<ul>
+<li>
+<p>A state can also be composite. You have to define it using the <code>state</code> keywords and brackets (<code>{ ... }</code>).</p>
+<p>這裡剛好示範了 initial transition 直接進入 superstate 的狀況，習慣上確實會在 superstate 裡再畫上一個小黑點。</p>
+<pre><code>@startuml
+scale 350 width
+[*] --&gt; NotShooting
+
+state NotShooting {
+  [*] --&gt; Idle
+  Idle --&gt; Configuring : EvConfig &lt;-- event 跟 transition 用 : 分開
+  Configuring --&gt; Idle : EvConfig
+}
+
+state Configuring {
+  [*] --&gt; NewValueSelection
+  NewValueSelection --&gt; NewValuePreview : EvNewValue
+  NewValuePreview --&gt; NewValueSelection : EvNewValueRejected
+  NewValuePreview --&gt; NewValueSelection : EvNewValueSaved
+
+  state NewValuePreview {
+     State1 -&gt; State2
+  }
+
+}
+@enduml
+</code></pre>
+<p><img alt="" src="http://s.plantuml.com/imgw/state-diagram-xtzglfer.webp" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="wireframe-salt">Wireframe (Salt) ??<a class="headerlink" href="#wireframe-salt" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/salt">Draw GUI mockup with Salt</a> #ril</li>
+</ul>
+<h2 id="mindmap-diagram">MindMap Diagram ??<a class="headerlink" href="#mindmap-diagram" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/news">What&rsquo;s new ?</a> 2019-03-01 開始支援 MindMap diagram</li>
+<li><a href="http://plantuml.com/mindmap-diagram">MindMap syntax and features</a> #ril</li>
+</ul>
+<h2 id="png-metadata">PNG Metadata ??<a class="headerlink" href="#png-metadata" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/faq#3">How long do the images generated by PlantUML Server live for? - Frequently Asked Questions</a> 提到 &ldquo;Furthermore, the diagram data is stored in PNG metadata, so you can fetch it even from a downloaded image.&rdquo;</li>
+<li><a href="http://mrhaki.blogspot.com/2016/12/plantuml-pleasantness-get-plantuml.html">PlantUML Pleasantness: Get PlantUML Definition From PNG - Messages from mrhaki</a> (2016-12-16) #ril</li>
+</ul>
+<h2 id="installation">安裝設定<a class="headerlink" href="#installation" title="Permanent link"> #</a></h2>
+<p>PlantUML 本身不用安裝，就一個 JAR 檔而已；除了 Java 外，可能也需要 Graphviz。</p>
+<pre><code>$ printf &quot;@startuml\nAlice -&gt; Bob: test\n@enduml&quot; | java -jar plantuml.jar -pipe &gt; sequence.png
+$ open sequence.png
+</code></pre>
+
+<p>參考資料：</p>
+<ul>
+<li><a href="http://plantuml.com/starting">Local installation - Quick Start Guide</a><ul>
+<li>You need these things to run PlantUML: Java, Graphviz (optional if you only need sequence diagrams and activity (beta) diagrams)</li>
+<li>Installed the above? Then simply download <code>plantuml.jar</code> and run it to open PlantUML&rsquo;s graphical user interface. There is no need to unpack or install anything. 原來也有 GUI</li>
+</ul>
+</li>
+<li><a href="http://plantuml.com/faq-install">Frequently Asked Questions about installation</a> #ril</li>
+</ul>
+<h3 id="docker">Docker ??<a class="headerlink" href="#docker" title="Permanent link"> #</a></h3>
+<ul>
+<li><a href="https://hub.docker.com/u/plantuml">plantuml&rsquo;s Profile - Docker Hub</a> 官方沒有提供 PlantUML Server 以外的 image，但似乎也可以只用裡面的 CLI?</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://plantuml.com/">PlantUML</a></li>
+<li><a href="http://plantuml.com/news">What&rsquo;s new?</a></li>
+</ul>
+<p>社群：</p>
+<ul>
+<li><a href="http://forum.plantuml.net/">PlantUML Forum</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/plantuml">&lsquo;plantuml&rsquo; Questions - Stack Overflow</a></li>
+</ul>
+<p>文件：</p>
+<ul>
+<li><a href="http://plantuml.com/guide">Drawing UML with PlantUML</a> (PDF)</li>
+</ul>
+<p>工具：</p>
+<ul>
+<li><a href="http://www.plantuml.com/plantuml/uml/">Online Demo Server</a></li>
+<li><a href="https://www.planttext.com/">PlantText UML Editor</a></li>
+</ul>
+<p>更多：</p>
+<ul>
+<li><a href="../plantuml-server/">PlantUML Server</a></li>
+</ul>
+<p>相關：</p>
+<ul>
+<li><a href="../uml/">UML</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="http://plantuml.com/sitemap-language-specification">Language Specification</a></li>
+<li><a href="http://plantuml.com/command-line#8">Help - Command Line</a></li>
+<li><a href="http://ogom.github.io/draw_uml/plantuml/">PlantUML Cheat Sheet - DrawUML</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

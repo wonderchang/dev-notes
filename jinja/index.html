@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/jinja/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Jinja - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/jinja.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#jinja">Jinja</a></li>
+            <li class="second-level"><a href="#less-logic-in-template">Template 裡不該有邏輯 ??</a></li>
+                
+            <li class="second-level"><a href="#hello-world">Hello, World!</a></li>
+                
+            <li class="second-level"><a href="#getting-started">新手上路 ??</a></li>
+                
+            <li class="second-level"><a href="#templating-api-developer-friendly">Templating (API), Developer-friendly ??</a></li>
+                
+            <li class="second-level"><a href="#context">Context ??</a></li>
+                
+            <li class="second-level"><a href="#template-syntax-designer-friendly">Template (Syntax), Designer-friendly ??</a></li>
+                
+            <li class="second-level"><a href="#autoescaping">Autoescaping ??</a></li>
+                
+            <li class="second-level"><a href="#macro">Macro ??</a></li>
+                
+            <li class="second-level"><a href="#filter">Filter ??</a></li>
+                
+            <li class="second-level"><a href="#variable">Variable ??</a></li>
+                
+            <li class="second-level"><a href="#loader">Loader ??</a></li>
+                
+            <li class="second-level"><a href="#template-compilation">Template Compilation ??</a></li>
+                
+            <li class="second-level"><a href="#debugging">Debugging ??</a></li>
+                
+            <li class="second-level"><a href="#sandbox">Sandbox ??</a></li>
+                
+            <li class="second-level"><a href="#customization">Customization ??</a></li>
+                
+            <li class="second-level"><a href="#installation">安裝設定</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="jinja">Jinja<a class="headerlink" href="#jinja" title="Permanent link"> #</a></h1>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/faq/">Frequently Asked Questions — Jinja2 Documentation (2.10)</a> Jinja 的命名源自日本的<a href="https://zh.wikipedia.org/wiki/%E7%A5%9E%E7%A4%BE">神社</a> (平文式羅馬字為 &ldquo;Jinjia&rdquo;)，且 &ldquo;temple&rdquo; 與 &ldquo;template&rdquo; 的發音近似，跟烏干達的城市 Jinja 無關；也難怪 Jinja 官網的圖示是 &ldquo;鳥居&rdquo;。</li>
+<li><a href="http://jinja.pocoo.org/">Welcome | Jinja2 (The Python Template Engine)</a><ul>
+<li>是個 template engine for Python</li>
+<li>Jinja2 is one of the most used template engines for Python. 這句話所言不假，例如 Ansible、Cookiecutte、Flask 都以它為 template engine。</li>
+<li>靈感來自 Django 的 templating system，在那之上額外提供了 expressive language、sandboxed execution、automatic escaping 等。</li>
+</ul>
+</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/intro/">Introduction — Jinja2 Documentation (2.10)</a><ul>
+<li>一開始就提到 &ldquo;GENERAL purpose templating language&rdquo;，確實它被廣泛應用在許多領域，不限定在 HTML。</li>
+<li>再次強調  both designer and developer friendly &ndash; sticking to Python’s principles and adding functionality useful for templating environments 同時顧到了 developer &amp; designer</li>
+</ul>
+</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/">Welcome to Jinja2 — Jinja2 Documentation (2.10)</a> Jinja2 is a modern and DESIGNER-FRIENDLY templating language for Python, modelled after Django’s templates，但 designer-friendly 實質上指的是什麼??</li>
+<li><a href="https://github.com/pallets/jinja/releases">Releases · pallets/jinja</a> 最早一個 release 是 2008-06-10 的 2.0rc1</li>
+<li><a href="https://en.wikipedia.org/wiki/Jinja_(template_engine)">Jinja (template engine) - Wikipedia</a> #ril</li>
+</ul>
+<h2 id="less-logic-in-template">Template 裡不該有邏輯 ??<a class="headerlink" href="#less-logic-in-template" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/faq/#isn-t-it-a-terrible-idea-to-put-logic-into-templates">Isn’t it a terrible idea to put Logic into Templates? - Frequently Asked Questions — Jinja2 Documentation (2.10)</a><ul>
+<li>Without a doubt you should try to remove as much logic from templates as possible. 大方向是，但並非絕對。</li>
+<li>But templates without any logic mean that you have to do all the processing in the code which is boring and stupid. So some amount of logic is required in templates to KEEP EVERYONE HAPPY. Python 內建的 <a href="https://docs.python.org/3/library/string.html#string.Template"><code>string.Template</code></a> 就不支援 loop、if condition，在 developer 與 designer 間要取得一個平衡。</li>
+<li>Jinja leaves it pretty much to you how much logic you want to put into templates. There are some restrictions in what you can do and what not. 自己決定要放多少 logic 進 template，但 Jinja 本身還是有限制，例如只允許少數的 Python expression (只是 template language 長得像而已?)，目的還是要讓 template 好維護、容易閱讀。</li>
+</ul>
+</li>
+</ul>
+<h2 id="hello-world">Hello, World!<a class="headerlink" href="#hello-world" title="Permanent link"> #</a></h2>
+<pre><code>from jinja2 import Template
+
+def test_hello_world(py2):
+    template = Template('Hello, {{ name }}!')
+    context = {'name': 'World'}
+
+    out = template.render(context)
+
+    unicode_type = unicode if py2 else str
+    assert out == 'Hello, World!'
+    assert type(out) == unicode_type
+</code></pre>
+
+<h2 id="getting-started">新手上路 ??<a class="headerlink" href="#getting-started" title="Permanent link"> #</a></h2>
+<h2 id="templating-api-developer-friendly">Templating (API), Developer-friendly ??<a class="headerlink" href="#templating-api-developer-friendly" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/intro/#basic-api-usage">Basic API Usage - Introduction — Jinja2 Documentation (2.10)</a><ul>
+<li>最基本的方法就是建立 <code>jinja2.Template</code>，並透過 <code>render()</code> 來畫出 unicode：</li>
+</ul>
+</li>
+</ul>
+<pre><code>&gt;&gt;&gt; from jinja2 import Template
+&gt;&gt;&gt; template = Template('Hello {{ name }}!')
+&gt;&gt;&gt; template.render(name='John Doe')
+u'Hello John Doe!' &lt;-- 一再強調 Jinja2 內部用 unicode
+</code></pre>
+
+<pre><code>  - `render()` 可以傳入 dict 或 keyword arguments -- 所謂的 "context" (of the template) -- 據以展開 (expand) template。
+</code></pre>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/">API — Jinja2 Documentation (2.10)</a> #ril</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#unicode">Unicode - API — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="context">Context ??<a class="headerlink" href="#context" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/faq/#why-is-the-context-immutable">Why is the Context immutable? - Frequently Asked Questions — Jinja2 Documentation (2.10)</a> #ril</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#the-context">The Context - API — Jinja2 Documentation (2.10)</a></li>
+</ul>
+<h2 id="template-syntax-designer-friendly">Template (Syntax), Designer-friendly ??<a class="headerlink" href="#template-syntax-designer-friendly" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="http://jinja.pocoo.org/#jinja-is-beautiful">Jinja is Beautiful - Welcome | Jinja2 (The Python Template Engine)</a> 從 Jinja is Beautiful 的範例看來，template 都在 <code>{% ... %}</code> 與 <code>{{ ... }}</code> 裡，另外也支援 template inheritance。</p>
+<p><code>{% extends "layout.html" %}
+{% block body %}
+  &lt;ul&gt;
+  {% for user in users %}
+&lt;li&gt;&lt;a href="{{ user.url }}"&gt;{{ user.username }}&lt;/a&gt;&lt;/li&gt;
+  {% endfor %}
+  &lt;/ul&gt;
+{% endblock %}</code></p>
+</li>
+<li>
+<p><a href="http://jinja.pocoo.org/docs/2.10/templates/">Template Designer Documentation — Jinja2 Documentation (2.10)</a> #ril</p>
+</li>
+</ul>
+<h2 id="autoescaping">Autoescaping ??<a class="headerlink" href="#autoescaping" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/#wide-range-of-features">Wide Range of Features - Welcome | Jinja2 (The Python Template Engine)</a> 提到 powerful automatic HTML escaping system for cross site scripting prevention. 這跟 cross site scripting (XSS) 有什麼關係??</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/faq/#why-is-autoescaping-not-the-default">Why is Autoescaping not the Default? - Frequently Asked Questions — Jinja2 Documentation (2.10)</a> #ril</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#autoescaping">Autoescaping - API — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="macro">Macro ??<a class="headerlink" href="#macro" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="http://jinja.pocoo.org/docs/2.10/templates/#macros">Macros - Template Designer Documentation — Jinja2 Documentation (2.10)</a></p>
+<ul>
+<li>Macro 就像是一般程式語言的 function，可以把慣用寫法 (idiom) 包裝成 reusable function (DRY)。例如：</li>
+</ul>
+<p><code>{% macro input(name, value='', type='text', size=20) -%}
+&lt;input type="{{ type }}" name="{{ name }}" value="{{
+    value|e }}" size="{{ size }}"&gt;
+{%- endmacro %}</code></p>
+<ul>
+<li>用起來就像 function call 一樣 (in the namespace??)；看起來像 Python code，但其實不是。</li>
+</ul>
+<p><code>&lt;p&gt;{{ input('username') }}&lt;/p&gt;
+&lt;p&gt;{{ input('password', type='password') }}&lt;/p&gt;</code></p>
+<ul>
+<li>在 macro 裡，除了 macro 宣告的參數之外，還有些 special variables 可以調用： #ril</li>
+<li><code>varargs</code> (<code>list</code>) - 內有多出來的 (unconsumed) positional arguments。</li>
+<li><code>kwargs</code> (<code>dict</code>) - 內有多出來的 (unconsumed) keyword arguments。</li>
+<li>如果 macro name 以底線開頭，就不能被 export &amp; import；只能在單一個 template 裡使用。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://jinja.pocoo.org/docs/2.10/faq/#my-macros-are-overridden-by-something">My Macros are overridden by something - Frequently Asked Questions — Jinja2 Documentation (2.10)</a> #ril</p>
+</li>
+</ul>
+<h2 id="filter">Filter ??<a class="headerlink" href="#filter" title="Permanent link"> #</a></h2>
+<ul>
+<li><code>int()</code> 屬於 builtin filter 而非 builtin global function，結果 <code>{% for page in range(int(cookiecutter.number_of_slides)) %}</code> 會出現 <code>int not defined</code> 的錯誤，非得用 <code>{% set number_of_slides = cookiecutter.number_of_slides | int %}</code> 先轉換過?</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#custom-filters">Custom Filters - API — Jinja2 Documentation (2.10)</a> #ril</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/templates/#filters">Filters - Template Designer Documentation — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="variable">Variable ??<a class="headerlink" href="#variable" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/templates/#variables">Template Designer Documentation — Jinja2 Documentation (2.10)</a> #ril<ul>
+<li>Template variable 定義在傳進 template 的 context dictionary 裡。</li>
+<li>You can use a dot (<code>.</code>) to access ATTRIBUTES OF A VARIABLE in addition to the standard Python <code>__getitem__</code> “subscript” syntax (<code>[]</code>). 但所有的 variable 都支援 <code>[]</code> 嗎? 還是在 template 裡，這兩種用法是互通的??</li>
+<li>如果 variable 或 attribute 不存在，會得到 undefined value，至於會導致什麼樣的反應，則跟 application configuration 有關；被印出來或 iterate 時會視為 empty string，但其他的操作則會直接噴錯。</li>
+</ul>
+</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#notes-on-identifiers">Notes on Identifiers - API — Jinja2 Documentation (2.10)</a> #ril</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#the-global-namespace">The Global Namespace - API — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="loader">Loader ??<a class="headerlink" href="#loader" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#loaders">Loaders - API — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="template-compilation">Template Compilation ??<a class="headerlink" href="#template-compilation" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/#wide-range-of-features">Wide Range of Features - Welcome | Jinja2 (The Python Template Engine)</a> 提到 &ldquo;just in time compilation to Python bytecode&rdquo;，會把 template 轉譯成 Pyhton bytecode 以提昇效能 (也支援 ahead-of-time compilation)，或許因為這樣才需要有 sandbox 吧?</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#bytecode-cache">Bytecode Cache - API — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="debugging">Debugging ??<a class="headerlink" href="#debugging" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/#wide-range-of-features">Wide Range of Features - Welcome | Jinja2 (The Python Template Engine)</a> 提到 &ldquo;Easy to debug with a debug system that integrates template COMPILE AND RUNTIME ERRORS into the standard Python traceback system.&rdquo; 搭配 ahead-of-time compilation 有機會在 build time 就發現 template 的錯誤??</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/">Welcome to Jinja2 — Jinja2 Documentation (2.10)</a> Line numbers of exceptions directly point to the correct line in the template.</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/faq/#my-tracebacks-look-weird-what-s-happening">My tracebacks look weird. What’s happening? - Frequently Asked Questions — Jinja2 Documentation (2.10)</a> #ril</li>
+</ul>
+<h2 id="sandbox">Sandbox ??<a class="headerlink" href="#sandbox" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/">Welcome | Jinja2 (The Python Template Engine)</a> 一開始就提到 &ldquo;an optional integrated SANDBOXED EXECUTION ENVIRONMENT&rdquo;</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/sandbox/">Sandbox — Jinja2 Documentation (2.10)</a> 用來評估 untrusted template/code #ril</li>
+</ul>
+<h2 id="customization">Customization ??<a class="headerlink" href="#customization" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/#wide-range-of-features">Wide Range of Features - Welcome | Jinja2 (The Python Template Engine)</a> Configurable syntax. For instance you can reconfigure Jinja2 to better fit output formats such as LaTeX or JavaScript. 是指可以把 <code>{% ... %}</code> 及 <code>{{ ... }}</code> 換成其他符號??</li>
+</ul>
+<h2 id="installation">安裝設定<a class="headerlink" href="#installation" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/#and-powerful">And Powerful - Welcome | Jinja2 (The Python Template Engine)</a> 提到支援 Python 2.4+ 及 Python 3。</li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/intro/#prerequisites">Prerequisites - Introduction — Jinja2 Documentation (2.10)</a> #ril<ul>
+<li>支援 Python 2.6+ 及 Python 3.3+，不過 Python 3 還在實驗階段，也之所以文件的寫法都是 Python 2。</li>
+<li>用 pip 安裝 <code>jinja2</code> 套件即可 (注意不是 <code>jinja</code>，會裝到 Jinja 1.x)，如果需要從其他 egg/package 載入 template (<code>PackageLoader</code>)，則需要加裝 <code>setuptools</code>/<code>distribute</code>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+<li><a href="https://github.com/pallets/jinja">pallets/jinja - GitHub</a></li>
+<li><a href="https://pypi.org/project/Jinja2/">Jinja2 - PyPI</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/">Jinja2 API Documentation</a></li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/api/#jinja2.Template">class <code>jinja2.Template</code></a></li>
+<li><a href="http://jinja.pocoo.org/docs/2.10/templates/#list-of-builtin-filters">List of Builtin Filters</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

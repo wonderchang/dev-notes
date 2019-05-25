@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/flask-restplus/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Flask-RESTPlus - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/flask-restplus.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#flask-restplus">Flask-RESTPlus</a></li>
+            <li class="second-level"><a href="#getting-started">新手上路</a></li>
+                
+            <li class="second-level"><a href="#request-parsing">Request Parsing ??</a></li>
+                
+            <li class="second-level"><a href="#response-marshalling">Response Marshalling ??</a></li>
+                
+            <li class="second-level"><a href="#versioning">Versioning ??</a></li>
+                
+            <li class="second-level"><a href="#oauth">OAuth ??</a></li>
+                
+            <li class="second-level"><a href="#api">如何自動產生 API 文件?</a></li>
+                
+            <li class="second-level"><a href="#installation">安裝設定</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="flask-restplus">Flask-RESTPlus<a class="headerlink" href="#flask-restplus" title="Permanent link"> #</a></h1>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/">Welcome to Flask-RESTPlus’s documentation! — Flask-RESTPlus 0.11.0 documentation</a> #ril<ul>
+<li>是個 Flask extension，幫助快速建立 REST APIs。本身鼓勵 best practices with minimal setup，提供許多 decorators/tools 用來描述 API，並揭露 API 文件 (背後用 Swagger UI)。</li>
+</ul>
+</li>
+</ul>
+<h2 id="getting-started">新手上路<a class="headerlink" href="#getting-started" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/quickstart.html">Quick start — Flask-RESTPlus 0.10.1 documentation</a> #ril<ul>
+<li><code>from flask_restplus import Api</code>，如同其他 extension，可以一開始就給 application object (<code>api = Api(app)</code>)，也可以事後再給 (<code>api.init_app(app)</code>)</li>
+</ul>
+</li>
+</ul>
+<pre><code>from flask import Flask
+from flask_restplus import Resource, Api
+
+app = Flask(__name__)
+api = Api(app)
+
+@api.route('/hello')
+class HelloWorld(Resource): # resourceful routing 對象是 class
+    def get(self):
+        return {'hello': 'world'} # 預設 content type 採 application/json
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<pre><code>  - 實驗確認，若是採用 `app.route()` 而非 `api.route()`，`return {'hello': 'world'}` 會丟出 `TypeError: 'dict' object is not callable` 的錯誤，而且 content type 是 `text/html` 而不是 `application/json`。
+  - 預設會在 API root 產生 Swagger UI 文件，以這個例子而言是 http://127.0.0.1:5000/
+  - Flask-RESTPlus 主要的 building block 是 resource -- 基於 Flask 的 [plugable view](http://flask.pocoo.org/docs/1.0/views/) (based on classes instead of functions)，只要定義 (view/resource) class 的不同 method，就能實作不同的 HTTP methods，例如：
+</code></pre>
+<pre><code>from flask import Flask, request
+from flask_restplus import Resource, Api
+
+app = Flask(__name__)
+api = Api(app)
+
+todos = {}
+
+@api.route('/&lt;string:todo_id&gt;')
+class TodoSimple(Resource):
+    def get(self, todo_id):
+        return {todo_id: todos[todo_id]}
+
+    def put(self, todo_id):
+        todos[todo_id] = request.form['data']
+        return {todo_id: todos[todo_id]}
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/example.html">Full example — Flask-RESTPlus 0.10.1 documentation</a> #ril</li>
+</ul>
+<h2 id="request-parsing">Request Parsing ??<a class="headerlink" href="#request-parsing" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/parsing.html">Request Parsing — Flask-RESTPlus 0.11.0 documentation</a> #ril<ul>
+<li>Argument Locations 提到，可以限定 value 來自 POST body、query string、header、cookie 或是 uploads</li>
+</ul>
+</li>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/api.html#flask_restplus.reqparse.Argument">API — Flask-RESTPlus 0.10.1 documentation</a> 雖說 <code>type</code> 是 &ldquo;type to which the request argument should be converted&rdquo;，但實際上可以是 function，若轉換/檢查的過程丟出 exception，就會回傳 error message #ril</li>
+</ul>
+<h2 id="response-marshalling">Response Marshalling ??<a class="headerlink" href="#response-marshalling" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/marshalling.html">Response marshalling — Flask-RESTPlus 0.11.0 documentation</a> #ril</li>
+</ul>
+<h2 id="versioning">Versioning ??<a class="headerlink" href="#versioning" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-apis-with-reusable-namespaces">Multiple APIs with reusable namespaces - Scaling your project — Flask-RESTPlus 0.11.0 documentation</a> #ril</li>
+</ul>
+<h2 id="oauth">OAuth ??<a class="headerlink" href="#oauth" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/swagger.html#documenting-authorizations">Documenting authorizations - Swagger documentation — Flask-RESTPlus 0.11.0 documentation</a> #ril</li>
+<li><a href="https://www.youtube.com/watch?v=xF30i_A6cRw">How to Use Token Based Authentication in Flask-RESTPlus - YouTube</a> #ril</li>
+<li><a href="https://github.com/frol/flask-restplus-server-example">frol/flask-restplus-server-example: Real-life RESTful server example on Flask-RESTplus</a> 提到 oahthlib #ril</li>
+<li><a href="https://github.com/noirbizarre/flask-restplus/issues/138">OAuth2 password credential doesn&rsquo;t work in SwaggerUI · Issue #138 · noirbizarre/flask-restplus</a> 出現 <code>@oauth.require_oauth('member:read')</code> 的用法 #ril</li>
+<li><a href="https://flask-oauthlib.readthedocs.io/en/latest/">Flask-OAuthlib — Flask-OAuthlib 0.9.5 documentation</a> #irl</li>
+</ul>
+<h2 id="api">如何自動產生 API 文件?<a class="headerlink" href="#api" title="Permanent link"> #</a></h2>
+<ul>
+<li>Building beautiful REST APIs using Flask, Swagger UI and Flask-RESTPlus - Michał Karzyński <a href="http://michal.karzynski.pl/blog/2016/06/19/building-beautiful-restful-apis-using-flask-swagger-ui-flask-restplus/">http://michal.karzynski.pl/blog/2016/06/19/building-beautiful-restful-apis-using-flask-swagger-ui-flask-restplus/</a> 支持 Markdown? #ril</li>
+</ul>
+<h2 id="installation">安裝設定<a class="headerlink" href="#installation" title="Permanent link"> #</a></h2>
+<pre><code>$ pip install flask-restplus
+$ pip install enum34 # Python 2.7
+</code></pre>
+
+<p>參考資料：</p>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/#installation">Installation - Welcome to Flask-RESTPlus’s documentation! — Flask-RESTPlus 0.11.0 documentation</a> 安裝 <code>flask-restplus</code> 套件，支援 Python 2.7+</li>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/installation.html">Installation — Flask-RESTPlus 0.11.0 documentation</a> 支持 Python 2.7, 3.3+ 及 PyPy、PyPy3。</li>
+<li>在 Python 2.7 下執行，會出現 &ldquo;ImportError: cannot import name IntEnum&rdquo; 的錯誤，加裝 <code>enum34</code> 套件即可。</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/">Flask-RESTPlus Documentation</a></li>
+<li><a href="https://github.com/noirbizarre/flask-restplus">noirbizarre/flask-restplus - GitHub</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/changelog.html">Changelog</a></li>
+<li><a href="http://flask-restplus.readthedocs.io/en/stable/api.html">API Documentation</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

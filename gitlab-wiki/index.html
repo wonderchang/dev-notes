@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/gitlab-wiki/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>GitLab / Wiki - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/gitlab-wiki.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#gitlab-wiki">GitLab / Wiki</a></li>
+            <li class="second-level"><a href="#markdown">Markdown ??</a></li>
+                
+            <li class="second-level"><a href="#_1">頁面如何命名?</a></li>
+                
+            <li class="second-level"><a href="#header">指向 header 的連結 ??</a></li>
+                
+            <li class="second-level"><a href="#toc-table-of-contents">TOC (Table Of Contents)</a></li>
+                
+            <li class="second-level"><a href="#math">Math</a></li>
+                
+            <li class="second-level"><a href="#commit-message">如何要求提供有意義的 Commit Message?</a></li>
+                
+            <li class="second-level"><a href="#_2">圖片存放的位置 ??</a></li>
+                
+            <li class="second-level"><a href="#_3">如何建立文件階層?</a></li>
+                
+            <li class="second-level"><a href="#_4">如何比對不同版本的差異?</a></li>
+                
+            <li class="second-level"><a href="#wiki-slack">如何將 Wiki 的異動通知到 Slack?</a></li>
+                
+            <li class="second-level"><a href="#_5">如何用文字來表現不同的圖形?</a></li>
+                
+            <li class="second-level"><a href="#wiki-link">Wiki Link</a></li>
+                
+            <li class="second-level"><a href="#customizing-sidebar">自訂 Sidebar</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="gitlab-wiki"><a href="../gitlab/">GitLab</a> / Wiki<a class="headerlink" href="#gitlab-wiki" title="Permanent link"> #</a></h1>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/project/wiki/#creating-a-new-wiki-page">Creating a new wiki page - Wiki | GitLab</a> GitLab wikis support Markdown, RDoc and AsciiDoc. 確實在編修頁面時，可以選擇這 3 種 format。</li>
+</ul>
+<h2 id="markdown">Markdown ??<a class="headerlink" href="#markdown" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html">Transitioning to CommonMark - Markdown | GitLab</a> #ril<ul>
+<li>GitLab uses “GitLab Flavored Markdown” (GFM). It extends the CommonMark specification (which is based on standard Markdown) in a few significant ways to ADD some useful functionality. It was inspired by GitHub Flavored Markdown. 注意 GFM (GitLab) 與 GFM (GitHub) 不一樣，GitLab GFM 是基於 CommonMark，而 CommonMark 又基於標準的 Markdown，所以是相對嚴格的，沒有 GitHub GFM 那些彈性，但加了一些 GitLab 自己的東西。</li>
+<li>For the best result, we encourage you to check this document out as rendered by GitLab itself: <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/user/markdown.md">markdown.md</a> 比較保險的寫法都在裡面 #ril</li>
+<li>GitLab uses (as of 11.1) the <a href="https://github.com/gjtorikian/commonmarker">CommonMark Ruby Library</a> for Markdown processing of all new issues, merge requests, comments, and other Markdown content in the GitLab system. As of 11.3, wiki pages and Markdown files (<code>.md</code>) in the repositories are also processed with CommonMark. Older content in issues/comments are still processed using the <a href="https://github.com/vmg/redcarpet">Redcarpet Ruby library</a>. 看來都往 CommonMark 靠攏了。</li>
+<li>Since CommonMark uses a slightly stricter syntax, these documents may now display a little strangely since we’ve transitioned to CommonMark. Numbered lists with NESTED LISTS in particular can be displayed incorrectly. 如果暫時要看舊寫法的文件，URL 後面加 <code>?legacy_render=1</code> 參數即可。如果有許多檔案要調整的話，可以用 <a href="https://gitlab.com/digitalmoksha/diff_redcarpet_cmark">diff_redcarpet_cmark</a> 找出需要修改的檔案。</li>
+</ul>
+</li>
+</ul>
+<h2 id="_1">頁面如何命名?<a class="headerlink" href="#_1" title="Permanent link"> #</a></h2>
+<ul>
+<li>正確的說法是 page slug，而非 page name。</li>
+<li>建議全部小寫，單字間用 <code>-</code> 分隔，例如 <code>quick-start</code> 而非 <code>quick_start</code> 或 <code>QuickStart</code>。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>在 web editor 新增頁面時，出現 Page slug 的提示 - <code>how-to-setup</code>。</li>
+<li>用 <code>how-to-setup</code> 與 <code>how_to_setup</code> 的結果不同，前者在 TOC 裡會表現為 <code>How to setup</code>，但後者則會表現為 <code>How_to_setup</code>，顯然在 GitLab 內部 <code>-</code> 與單字間的空白是有對應關係的。</li>
+</ul>
+<h2 id="header">指向 header 的連結 ??<a class="headerlink" href="#header" title="Permanent link"> #</a></h2>
+<ul>
+<li>Header ID 從 header 的內容自動產生，無法自訂，但中文產生的 URL 有點醜。</li>
+<li>若手動宣告 <code>&lt;a id="custom-id" /&gt;</code>，雖然可行，但使用者無法在閱讀文件時直接拿到，反而造成混淆?</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>Markdown - GitLab Documentation <a href="https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links">https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links</a> GitLab 會自動從 header 內容產生 header ID。</li>
+<li>Github Markdown Heading Anchors <a href="https://gist.github.com/asabaylus/3071099">https://gist.github.com/asabaylus/3071099</a> GitHub 也是用類似的方式產生。</li>
+<li>不知道從哪個版本之後，anchor 都變成 <code>&lt;a id="user-content-header" href="#header" ...&gt;&lt;/a&gt;</code>，感覺 URL 都要加上 <code>user-content-</code> 的 prefix，但 <code>#header</code> 似乎又還能作用? 觀察 <code>[[_TOC_]]</code> 產生的連結，其實也沒加 <code>user-content-</code> prefix，而且也可以作用，不知道是怎麼回事?</li>
+<li><a href="https://opensoul.org/2014/09/05/dom-clobbering/#-the-solution">User-generated content and DOM clobbering - Brandon Keepers</a> 感覺是 JavaScript 的 <code>hashchange</code> 在作用，當 URL 變成 <code>#header</code> 時，會自動往 <code>#user-content-header</code> 捲動。</li>
+</ul>
+<h2 id="toc-table-of-contents">TOC (Table Of Contents)<a class="headerlink" href="#toc-table-of-contents" title="Permanent link"> #</a></h2>
+<p>在需要有 TOC 的地方放 <code>[[_TOC_]]</code> 即可。</p>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://forum.gitlab.com/t/table-of-contents-toc-in-markdown-wiki-and-general/9394">Table Of Contents (TOC) in Markdown (Wiki and general) - General - GitLab Community Forum</a> 有人發現在 #2494 提到支援 <code>[[_TOC_]]</code> 的用法。</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/2494">Add ability to generate Table of Contents fro Wikis (#2494) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> (2015-09-10) v8.6 加入了 <code>[[_TOC_]]，其間有人提到</code><!-- NOTOC -->` 可以把某個 entry 排除在 TOC 之外，不過好像沒被採納。</li>
+<li><a href="https://github.com/gollum/gollum/wiki#table-of-contents-toc-tag">Home · gollum/gollum Wiki</a> 支援 <code>[[_TOC_]]</code> 或 <code>[[_TOC_|levels = 3]]</code> 的用法，不過在 GitLab Wiki (10.4.1) 上後者沒有作用。</li>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html">Markdown - GitLab Documentation</a> 這裡竟完全沒提到 TOC。</li>
+</ul>
+<h2 id="math">Math<a class="headerlink" href="#math" title="Permanent link"> #</a></h2>
+<p>官方只說用 LaTeX 寫，要怎麼寫 LaTeX 要另外學。</p>
+<hr />
+<p>參考資料：</p>
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/ee/user/markdown.html#math">Math - GitLab Markdown | GitLab</a></p>
+<ul>
+<li>
+<p>It is possible to have math written with the LaTeX syntax rendered using KaTeX. Math written inside <code>$``$</code> will be rendered inline with the text.</p>
+<pre><code>This math is inline $`a^2+b^2=c^2`$.
+</code></pre>
+</li>
+<li>
+<p>Math written inside triple back quotes, with the language declared as <code>math</code>, will be rendered on a separate line.</p>
+<pre><code>This is on a separate line
+```math
+a^2+b^2=c^2
+```
+</code></pre>
+</li>
+<li>
+<p>Be advised that KaTeX only supports a subset of LaTeX. 如果只拿來寫數學運算式，應該沒什麼問題吧?</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="commit-message">如何要求提供有意義的 Commit Message?<a class="headerlink" href="#commit-message" title="Permanent link"> #</a></h2>
+<ul>
+<li>預設的 commit message 是 &ldquo;Update <page-title>&ldquo;，填空白也可以 (GitLab CE 10.4.0 上觀察到)，這會讓 page history 變得沒有意義。</li>
+<li>有些人建議 commit message 應該預設要留白且設為必填，否則很常忘記改讓 page history 沒有太大的用處，但不知為何 GitLab 開發團隊就是不予採納。目前只好用工具檢查 commit message 為 &ldquo;Update <page-title>&rdquo; 時，跟使用者提示為什麼這樣做不好。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/27279">Wiki -- Provide meaningful commit message (#27279) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> (2017-01-16) 早先預設會採用上一個 commit 的 messag，建議明確要求輪入有意義的 commit message。2017-04-22 v9.1 已經改成 &ldquo;Create <page-title-here>&rdquo; 或 &ldquo;Update <page-title-here>&rdquo; (說是 UX team 的建議)。</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/20389">Arbitrary commit message when editing wiki page (#20389) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> (2016-07-28) Daniel Kasza: 想邀大家一起來用 wiki，但現在 page history 是沒有用的，怎麼會有預設為上個 commit message 的設計? Gareth Somerville: 建議留白，要求使用者明確寫上 commit message；Alper Ortac 也同意，常常忘了改 commit message，而讓 page history 充滿了錯誤的資訊。不知道為什麼 Taurie Davis 會說 The commit message should mimic what we do for editing files. &ldquo;Update [wiki-page-name]&rdquo; 完全沒把 Gareth Somerville 的建議聽進去?</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/30104">Wiki placeholder commit messages for Web UI could be better (#30104) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> (2017-03-27) Alper Ortac 又跳出來說 default message 應該留空，而且必填。</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/37087">Commit message of new wiki page doesn&rsquo;t get stored (#37087) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> (2017-08-27) 新 wiki page 的 commit message 無法自訂 (未解)。</li>
+</ul>
+<h2 id="_2">圖片存放的位置 ??<a class="headerlink" href="#_2" title="Permanent link"> #</a></h2>
+<ul>
+<li>把圖片拖拉進 editor 就會上傳並填上 <code>![{filename}](/uploads/{hash}/{filename})</code>，很方便但會導致在 local 無法預覽圖片；它不在 wiki repo 裡，在 Settings &gt; Export project 裡有提到 &ldquo;Project uploads&rdquo;。</li>
+<li>若把圖放在 project repo 呢? 有 web UI 可以上傳檔案、取得 URL，只是在 wiki repo 裡引用時要寫完整的 URL，例如 <code>![Text](http://gitlab.example.com/group/project/.../image.png)</code> (之後換位置可以大量取代，問題不大)；雖然離線時會看不到圖，但有網路時只要能預覽的 editor 都沒問題，就像把圖放在 imgur 一樣，好處是能造訪 project repo 與 wiki repo 的人有一樣的限制。</li>
+<li>使用 web editor 編輯時，把本地端的檔案直接拖拉進編輯區就會自動上傳並插入圖片 (或是直接把系統剪貼簿的圖片直接貼上)，雖然檔案不會出現在 wiki repo 裡，但這會大大降低進入的門檻，提高大家用 wiki 撰寫文件的意願，對於非技術人員也比較友善。</li>
+<li>把圖放 wiki repo 也是一個方式，不過這對非技術人員的門檻太高。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/project/wiki/">Wiki | GitLab</a> #ril<ul>
+<li>Starting with GitLab 11.3, any file that is uploaded to the wiki via GitLab&rsquo;s interface will be stored in the wiki Git repository, and it will be available if you clone the wiki repository locally. 實驗發現圖檔會放 wiki repo 的 <code>uploads/{hash}/{filename}</code> 下。</li>
+<li>All uploaded files prior to GitLab 11.3 are stored in GitLab itself. If you want them to be part of the wiki&rsquo;s Git repository, you will have to upload them again. 當然連結也要跟著改。</li>
+</ul>
+</li>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html#links">Links - Markdown | GitLab</a> project repo 與 wiki repo 間的 relative link 無法相互參照。</li>
+<li><a href="https://stackoverflow.com/questions/38228508/">Where can I manage files uploaded to wiki of a Gitlab.com project? - Stack Overflow</a> 透過 wiki editor 圖片會上傳到 <code>/uploads</code> (GitLab 8.9.0 後無法管理?)，建議 clone 出 wiki repo 放進圖片。</li>
+<li><a href="https://gitlab.com/gitlab-com/support-forum/issues/1423">Cloning Wiki doesn&rsquo;t include uploads (#1423) · Issues · GitLab.com / GitLab.com Support Tracker · GitLab</a> 上傳的圖不在 repo 裡，要在本地端寫 wiki 還真不方便</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/33475">Uploads to a wiki should be stored inside the wiki git repository (#33475) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> #ril<ul>
+<li>跟 Gollum 的 <code>--allow-uploads dir</code> 與 <code>--allow-uploads page</code> 對不起來?</li>
+</ul>
+</li>
+</ul>
+<h2 id="_3">如何建立文件階層?<a class="headerlink" href="#_3" title="Permanent link"> #</a></h2>
+<ul>
+<li>GitLab 確實支持文件階層結構，但為了方便 page 之間相互引用，建議不要有階層，把全部的 page 都放在同一層。</li>
+<li>另一個考量是，將來 page 重新命名，可以大量取代 <code>[Text](page-old)</code> 為 <code>[Text](page-new)</code>，不用考量相對位置的變動。</li>
+<li>這會衍生出一個問題，該如何解決命名衝突? 可以從 <code>prefix-</code> 或 <code>-suffix</code> 兩方面來著手，例如 <code>versioning</code>、<code>jenkins</code>、<code>jenkins-setup</code>。</li>
+<li>這中間涉及文件的演進，可能一開始 Jenkins 的 setup 寫在 <code>jenkins#setup</code> (其中一節)，但之後可能拉出來成為獨立的 page，這時候只要大量將 <code>jenkins#setup</code> 取代為 <code>jenkins-setup</code> 即可。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>Wiki - Hierarchical link - Markdown - GitLab Documentation <a href="https://docs.gitlab.com/ee/user/markdown.html#wiki-hierarchical-link">https://docs.gitlab.com/ee/user/markdown.html#wiki-hierarchical-link</a> GitLab 確實支援 relative link (用 <code>./page</code> 或 <code>../page</code> 表示)。</li>
+</ul>
+<h2 id="_4">如何比對不同版本的差異?<a class="headerlink" href="#_4" title="Permanent link"> #</a></h2>
+<p>參考資料：</p>
+<ul>
+<li>Cannot diff changes in wiki history (#17906) · Issues · GitLab.org / GitLab Community Edition · GitLab <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/17906">https://gitlab.com/gitlab-org/gitlab-ce/issues/17906</a> 有 PR 在處理 diff 的需求。</li>
+</ul>
+<h2 id="wiki-slack">如何將 Wiki 的異動通知到 Slack?<a class="headerlink" href="#wiki-slack" title="Permanent link"> #</a></h2>
+<ul>
+<li>最根本的問題是 Wiki Page event 裡不帶 commit，只好求助 custom hook 或是定期 pull 並找出新的 commit。</li>
+<li>Custom hook 在 CE 裡只能透過 admin 把 hook file 擺到適當的位置，若 project 數量多的話，要一直請 admin 幫忙也很麻煩，所以後者 &ldquo;定期 pull 並找出新的 commit&rdquo; 似乎比較可行。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>方向上是整合 Wiki Event 與 Slack 沒錯，但目前往 Slack 的訊息是整份 wiki 文件內容，看不出改了什麼?</li>
+<li>若能在 Slack 訊息裡提供 diff，或者附上 Gitweb 連結，方便查看任意兩個版本間的差異&hellip; 因為目前 GitLab Wiki 還不提供這項功能。前者 diff 可能相對單純，但後者若需要做權限控制就會比較麻煩，而且也涉及要同步兩個 repo。</li>
+<li>Custom Git Hooks - GitLab Documentation <a href="https://docs.gitlab.com/ee/administration/custom_hooks.html">https://docs.gitlab.com/ee/administration/custom_hooks.html</a> Hook 設定在 filesystem，要 GitLab server 管理者才能做，也只有 GitLab Enterprise Edition 才有 UI 供一般使用者設定 #ril</li>
+<li>Webhooks - GitLab Documentation <a href="https://docs.gitlab.com/ce/user/project/integrations/webhooks.html#wiki-page-events">https://docs.gitlab.com/ce/user/project/integrations/webhooks.html#wiki-page-events</a> Wiki Page events 並不帶有 commit，只能從 <code>object_attributes.slug</code> 取得最新的 commit? 若一個 commit 修改多個 wiki page 會觸發多個 event?</li>
+<li>若是將 Wiki Event 往 Jenkins 打，由 Jenkins 搭配 <a href="https://plugins.jenkins.io/slack">Slack Notification</a> plugin 送出 diff 呢?</li>
+<li>Jenkins 裝了 GitLab Plugin 之後，發現 Enabled GitLab triggers 裡並不支援 Wiki Page event</li>
+<li>Jenkins Plugins <a href="https://plugins.jenkins.io/generic-webhook-trigger">https://plugins.jenkins.io/generic-webhook-trigger</a> 可以用來接 Wiki Page event? 似乎所有的 job 都共用 <code>http://JENKINS_URL/generic-webhook-trigger/invoke</code>? 何不用 GitLab CI 自己來接?</li>
+<li>nazrhyn/gitlab-slack: A service that receives hook notifications from GitLab and posts information to an incoming webhook on Slack. <a href="https://github.com/nazrhyn/gitlab-slack">https://github.com/nazrhyn/gitlab-slack</a> Wiki page 只會通知有異動，還是沒有 diff。</li>
+<li>How can you track or be notified of changes to GitHub wikis? - Stack Overflow <a href="https://stackoverflow.com/questions/8407917/">https://stackoverflow.com/questions/8407917/</a> 分為 Push approach 與 JSON-based pull approach；或許定時處理也是個方式?</li>
+<li>確定 <code>git@.../wiki.git</code> 可以透過 deploy key 拿到 source code；走 Build Triggers &gt; Trigger builds remotely 就可以觸發 (要啟用 Global Security 才看得到這個選項)</li>
+<li>如果用 <code>ansi2html</code> 轉換成 HTML，並存成 Jenkins 的 artifact 供其他人開啟瀏覽? 或許直接用 nginx 的 upload module 也不錯?</li>
+</ul>
+<h2 id="_5">如何用文字來表現不同的圖形?<a class="headerlink" href="#_5" title="Permanent link"> #</a></h2>
+<ul>
+<li>PlantUML &amp; GitLab - GitLab Documentation <a href="https://docs.gitlab.com/ee/administration/integration/plantuml.html">https://docs.gitlab.com/ee/administration/integration/plantuml.html</a> #ril</li>
+</ul>
+<h2 id="wiki-link">Wiki Link<a class="headerlink" href="#wiki-link" title="Permanent link"> #</a></h2>
+<ul>
+<li>明確前置 <code>./</code>、<code>../</code> 或 <code>/</code> 的寫法很明確是相對於 current wiki page 或是從 wiki root 起算，這時候寫與不寫 wiki page 的副檔名，結果並無差別。</li>
+<li>否則會因有沒有副檔名而有不同的解讀 &ndash; 無副檔名時視為相對於 wiki root，有副檔名時則是相對於 current wiki page。</li>
+</ul>
+<hr />
+<p>參考資料：</p>
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/ee/user/markdown.html#wiki-specific-markdown">Wiki-specific Markdown - GitLab Markdown | GitLab</a></p>
+<ul>
+<li>
+<p>A link which just includes the slug for a page will point to that page (沒有副檔名而言), at the BASE LEVEL of the wiki. This snippet would link to a <code>documentation</code> page at the ROOT of your wiki:</p>
+<pre><code>[Link to Documentation](documentation)
+</code></pre>
+</li>
+<li>
+<p>Links with a FILE EXTENSION point to that file, RELATIVE to the CURRENT PAGE. If this snippet was placed on a page at <code>&lt;your_wiki&gt;/documentation/related</code>, it would link to <code>&lt;your_wiki&gt;/documentation/file.md</code>:</p>
+<pre><code>[Link to File](file.md)
+</code></pre>
+</li>
+<li>
+<p>A link can be constructed RELATIVE to the CURRENT WIKI PAGE using <code>./&lt;page&gt;</code>, <code>../&lt;page&gt;</code>, etc.</p>
+<ul>
+<li>If this snippet was placed on a page at <code>&lt;your_wiki&gt;/documentation/main</code>, it would link to <code>&lt;your_wiki&gt;/documentation/related</code>: <code>[Link to Related Page](./related)</code></li>
+<li>If this snippet was placed on a page at <code>&lt;your_wiki&gt;/documentation/related/content</code>, it would link to <code>&lt;your_wiki&gt;/documentation/main</code>: <code>[Link to Related Page](../main)</code></li>
+<li>If this snippet was placed on a page at <code>&lt;your_wiki&gt;/documentation/main</code>, it would link to <code>&lt;your_wiki&gt;/documentation/related.md</code>: <code>[Link to Related Page](./related.md)</code> 看似跟第一個例子沒有差別? 其實是有副檔名的狀況，也間接說明了要連到其他 wiki page，副檔名可以省略。</li>
+<li>If this snippet was placed on a page at <code>&lt;your_wiki&gt;/documentation/related/content</code>, it would link to <code>&lt;your_wiki&gt;/documentation/main.md</code>: <code>[Link to Related Page](../main.md)</code></li>
+</ul>
+</li>
+<li>
+<p>A link starting with a <code>/</code> is RELATIVE to the WIKI ROOT.</p>
+<ul>
+<li>This snippet links to <code>&lt;wiki_root&gt;/documentation</code>: <code>[Link to Related Page](/documentation)</code> 搭配上面 &ldquo;A link which just includes the slug for a page&rdquo; 的說法，在沒有副檔名的情況下，前面的 <code>/</code> 其實是可以省略的。</li>
+<li>This snippet links to <code>&lt;wiki_root&gt;/miscellaneous.md</code>: <code>[Link to Related Page](/miscellaneous.md)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="customizing-sidebar">自訂 Sidebar<a class="headerlink" href="#customizing-sidebar" title="Permanent link"> #</a></h2>
+<ul>
+<li>預設的 sidebar 會無腦地列出所有的 wiki page，它的的存在會讓人忽視頁面間連結的重要性。</li>
+<li>用 <code>/_sidebar.md</code> 可以自訂 sidebar，但原本 sidebar 下方 More Pages 的按鈕/連結還是會在。</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/ee/user/project/wiki/#customizing-sidebar">Customizing sidebar - Wiki | GitLab</a></p>
+<ul>
+<li>
+<p>By default, the wiki would render a sidebar which lists ALL THE PAGES for the wiki. You could as well provide a <code>_sidebar</code> page to replace this default sidebar. When this customized sidebar page is provided, the default sidebar would not be rendered, but the customized one.</p>
+<p>不過下方的 More Pages 還是會在。</p>
+</li>
+<li>
+<p><a href="https://about.gitlab.com/releases/#gitlab-112">GitLab releases | GitLab</a> GitLab 11.2 (2018-08-22) Custom Wiki sidebar</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/14995">Introduce sidebar support for Wikis (#14995) · Issues · GitLab.org / GitLab Community Edition · GitLab</a></p>
+<ul>
+<li>When commiting a <code>_Sidebar.md</code> file to a gitlab wiki, it is now showing up. Are sidebars supported in gitlab?</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/17940">Implement customized sidebar (!17940) · Merge Requests · GitLab.org / GitLab Community Edition · GitLab</a> 在 2018-07-17 進到 master，當時的 milestone 是 11.2；這個 MR 的前身是 jsooter 送出來的 <a href="https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/16241">Added support for custom wiki sidebar using _sidebar.md in the wiki root. If… (!16241) · Merge Requests · GitLab.org / GitLab Community Edition · GitLab</a></li>
+<li>
+<p>jsooter: On a very large wiki the existing TOC and &ldquo;More pages&rdquo; view do not do a very good job of organizing all of the pages in a way that makes them easy to navigate. Granted, you can search for wiki content but often times that returns too many results without a way of ordering or grouping the results. </p>
+<p>Because of this I have created a <code>_sidebar.md</code> with a wiki TOC ORGANIZED BY APPLICATION MODULE; like a FILE TREE VIEW. I then made a script to patch GitLab with the update from !16241 (closed).</p>
+<p>I should mention that the <code>_sidebar.md</code> I use is AUTO-GENERATED because it&rsquo;s too large to update manually.</p>
+<p>With extremely large wikis I prefer to have complete control over the sidebar content.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/SonarOpenCommunity/sonar-cxx/issues/217">Wiki: Remove sidebar and add table of content instead · Issue #217 · SonarOpenCommunity/sonar-cxx</a> GitHub Wiki 也有同樣的問題</p>
+<ul>
+<li>guwirth: Would like to remove the side bar in the wiki. USING TOO MUCH SPACE and hides especially table content. Suggestion is to add a table of content (ToC) at the beginning of each page instead. 下面一堆人響應</li>
+<li>wenns: Should be a win (as the tables are HARDLY READABLE currently)</li>
+<li>christocracy: +1 Tables are useless. I need that HORIZONTAL SPACE consumed by the sidebar.</li>
+<li>guwirth: (collaboator) Not possible 然後就把 issue 關了 XD</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<p>文件：</p>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html">GitLab Markdown | GitLab</a></li>
+</ul>
+<p>相關：</p>
+<ul>
+<li>數學等式的語法採 <a href="../latex/">LaTeX</a>，透過 <a href="../katex/">KaTeX</a> 在前端表現出來。</li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

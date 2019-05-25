@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/dart-programming/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Dart / Programming - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/dart-programming.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#dart-programming">Dart / Programming</a></li>
+            <li class="second-level"><a href="#getting-started">新手上路 ??</a></li>
+                
+            <li class="second-level"><a href="#style-lint">Style, Lint ??</a></li>
+                
+            <li class="second-level"><a href="#identifier">Identifier</a></li>
+                
+            <li class="second-level"><a href="#comment">Comment ??</a></li>
+                
+            <li class="second-level"><a href="#variable">Variable ??</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="dart-programming"><a href="../dart/">Dart</a> / Programming<a class="headerlink" href="#dart-programming" title="Permanent link"> #</a></h1>
+<ul>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/language-tour#a-basic-dart-program">A basic Dart program - Language Tour | Dart</a></p>
+<pre><code>// Define a function.
+printInteger(int aNumber) {
+  print('The number is $aNumber.'); // Print to console.
+}
+
+// This is where the app starts executing.
+main() {
+  var number = 42; // Declare and initialize a variable.
+  printInteger(number); // Call a function.
+}
+</code></pre>
+<ul>
+<li><code>// This is a comment.</code> &ndash; A single-line comment. Dart also supports multi-line and DOCUMENT COMMENTS (產生 API Docs).</li>
+<li>
+<p><code>int</code> &ndash; A type. Some of the other built-in types are <code>String</code>, <code>List</code>, and <code>bool</code>.</p>
+<p>感覺基本的型態都用小寫? 不過不像 Java 有 primitive type!!</p>
+</li>
+<li>
+<p><code>42</code> &ndash; A number literal. Number literals are a kind of COMPILE-TIME CONSTANT.</p>
+</li>
+<li><code>print()</code> &ndash; A handy way to display output.</li>
+<li><code>'...'</code> (or <code>"..."</code>) &ndash; A string literal.</li>
+<li><code>$variableName</code> (or <code>${expression}</code>) &ndash; String interpolation: including a variable or expression’s string equivalent inside of a string literal.</li>
+<li><code>main()</code> &ndash; The special, required, TOP-LEVEL FUNCTION where app execution starts.</li>
+<li><code>var</code> &ndash; A way to declare a variable WITHOUT SPECIFYING ITS TYPE. 不同於 <code>dynamic</code>。</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/language-tour#important-concepts">Important concepts - Language Tour | Dart</a></p>
+<ul>
+<li>Everything you can place in a variable is an object, and every object is an instance of a class. Even numbers, functions, and <code>null</code> are objects. All objects inherit from the <code>Object</code> class.</li>
+<li>
+<p>Although Dart is strongly typed, TYPE ANNOTATIONS are optional because Dart can INFER types. In the code above, <code>number</code> is inferred to be of type <code>int</code>. When you want to explicitly say that NO TYPE IS EXPECTED, use the special type <code>dynamic</code>.</p>
+<p>沒有宣告 type 並不表示沒有限定 type，而是交給工具推斷，有別於什麼都能放的 <code>dynamic</code>；因為 type 不一定要寫明，所以才有 type &ldquo;annotation&rdquo; (註釋) 的說法。</p>
+</li>
+<li>
+<p>Dart supports generic types, like <code>List&lt;int&gt;</code> (a list of integers) or <code>List&lt;dynamic&gt;</code> (a list of objects of ANY TYPE).</p>
+</li>
+<li>Dart supports top-level functions (such as <code>main()</code>), as well as functions TIED TO A CLASS OR OBJECT (static and instance methods, respectively). You can also create functions within functions (nested or local functions).</li>
+<li>Similarly, Dart supports TOP-LEVEL VARIABLES, as well as variables tied to a class or object (static and instance variables). Instance variables are sometimes known as fields or properties.</li>
+<li>
+<p>Unlike Java, Dart doesn’t have the keywords <code>public</code>, <code>protected</code>, and <code>private</code>. If an identifier starts with an underscore (<code>_</code>), it’s PRIVATE TO ITS LIBRARY. for details, see Libraries and visibility.</p>
+<p>如何達到 private to a class 的效果?? 還是這一層的保護是不需要的?</p>
+</li>
+<li>
+<p>Identifiers can start with a letter or underscore (<code>_</code>), followed by any combination of those characters plus digits.</p>
+</li>
+<li>
+<p>Dart has both EXPRESSIONS (which have RUNTIME VALUES) and STATEMENTS (which don’t). For example, the conditional expression <code>condition ? expr1 : expr2</code> has a value of <code>expr1</code> or <code>expr2</code>. Compare that to an if-else statement, which has no value. A statement often contains one or more expressions, but an expression can’t directly contain a statement.</p>
+</li>
+<li>Dart tools can report two kinds of problems: warnings and errors. Warnings are just indications that your code might not work, but they don’t prevent your program from executing. Errors can be either compile-time or run-time. A compile-time error prevents the code from executing at all; a run-time error results in an EXCEPTION being raised while the code executes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="getting-started">新手上路 ??<a class="headerlink" href="#getting-started" title="Permanent link"> #</a></h2>
+<h2 id="style-lint">Style, Lint ??<a class="headerlink" href="#style-lint" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/effective-dart/style">Effective Dart: Style | Dart</a></p>
+<ul>
+<li>A surprisingly important part of good code is GOOD STYLE. Consistent naming, ordering, and formatting helps CODE THAT IS THE SAME LOOK THE SAME. It takes advantage of the powerful pattern-matching hardware most of us have in our ocular systems. If we use a consistent style across the entire Dart ecosystem, it makes it easier for all of us to LEARN FROM AND CONTRIBUTE TO each others’ code.</li>
+<li>每個 style 都帶有 &ldquo;Linter rule: xxx&rdquo; 的連結往 <a href="https://dart-lang.github.io/linter/">Linter for Dart</a>。</li>
+<li>分為 Identifiers、Ordering、Formatting 三塊，其中 ordering 主要跟 import/export 有關。</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/dart-lang/dart_style/wiki/Formatting-Rules">Formatting Rules · dart-lang/dart_style Wiki</a></p>
+<ul>
+<li>The canonical source of truth for the logic dartfmt applies is in the code. &hellip; But if you want an approximate list of the main HIGH-LEVEL WHITESPACE RULES the formatter applies, these are them:</li>
+<li>最後一段文字是 Your goal is to BALANCE using indentation to show expression structure while not wanting to indent large swathes (塊) of code unnecessarily. 這裡講的 balance，指的是 readable + consistent。</li>
+</ul>
+<p>Spaces, not tabs.</p>
+<ul>
+<li>
+<p>Using spaces for formatting ensures the code LOOKS THE SAME IN EVERYONE&rsquo;S EDITOR. It also makes sure it looks the same when posted to blogs, or on code sites like GitHub.</p>
+<p>通常內縮 2 格。</p>
+</li>
+<li>
+<p>Modern editors emulate the behavior of tabs while inserting spaces, giving you the easy editing of tabs and the consistency of spaces.</p>
+</li>
+</ul>
+<p>One or two newlines after each statement or declaration.</p>
+<pre><code>main() {
+  first(statement);
+  second(statement);
+
+  third(statement);
+}
+
+anotherDeclaration() { ... }
+</code></pre>
+<p>No space between the declared name of a method, operator, or setter and its parameter list. 也就是 <code>(...)</code> 前不會有空白，所以 <code>==(other)</code> 不會寫成 <code>== (other)</code>。</p>
+<pre><code>log(arg) { ... }
+bool operator ==(other) =&gt; ...
+set contents(value) { ... }
+</code></pre>
+<p>Space after the <code>operator</code> keyword.</p>
+<pre><code>bool operator ==(other) =&gt; ...
+</code></pre>
+<p>Spaces around binary and ternary operators.</p>
+<ul>
+<li>Note that <code>&lt;</code> and <code>&gt;</code> are considered binary operators when used as expressions, but not for specifying generic types. Both <code>is</code> and <code>is!</code> are considered single binary operators. However, the <code>.</code> used to access members is not and should not have spaces around it.<pre><code>average = (a + b) / 2;
+largest = a &gt; b ? a : b;
+if (obj is! SomeType) print('not SomeType');
+</code></pre>
+</li>
+</ul>
+<p>Spaces after <code>,</code> and <code>:</code> when used in a map or named parameter.</p>
+<pre><code>function(a, b, named: c)
+[some, list, literal]
+{map: literal}
+</code></pre>
+<p>No spaces around unary operators.</p>
+<pre><code>!condition
+index++
+</code></pre>
+<p>Spaces around <code>in</code>, and after each <code>;</code> in a loop.</p>
+<pre><code>for (var i = 0; i &lt; 100; i++) { ... }
+
+for (final item in collection) { ... }
+</code></pre>
+<p>Space after flow-control keywords.</p>
+<ul>
+<li>This is UNLIKE FUNCTION AND METHOD CALLS, which do not have a space between the name and the opening parenthesis.<pre><code>while (foo) { ... }
+
+try {
+  // ...
+} catch (e) {
+  // ...
+}
+</code></pre>
+</li>
+</ul>
+<p>No space after <code>(</code>, <code>[</code>, and <code>{</code>, or before <code>)</code>, <code>]</code>, and <code>}</code>.</p>
+<ul>
+<li>Also, do not use a space when using <code>&lt;</code> and <code>&gt;</code> for generic types.<pre><code>var numbers = &lt;int&gt;[1, 2, (3 + 4)];
+</code></pre>
+</li>
+</ul>
+<p>Space before <code>{</code> in function and method bodies.</p>
+<ul>
+<li>When a <code>{</code> is used after a parameter list in a function or method, there should be a space between it and the <code>)</code> ending the parameters.<pre><code>getEmptyFn(a) {
+  return () {};
+}
+</code></pre>
+</li>
+</ul>
+<p>Place the opening curly brace (<code>{</code>) on the same line as what it follows. 還好官方有定義這個，否則有人喜歡把 <code>{</code> 擺在下一行，看起來實在不舒服!</p>
+<pre><code>class Foo {
+  method() {
+    if (someCondition) {
+      // ...
+    } else {
+      // ...
+    }
+  }
+}
+</code></pre>
+<p>Place binary operators on the preceding line in a MULTI-LINE EXPRESSION.</p>
+<ul>
+<li>
+<p>There are valid arguments for both styles but most of our code seems to go this way, and CONSISTENCY MATTERS MOST.</p>
+<pre><code>var bobLikesIt = isDeepFried ||
+    (hasPieCrust &amp;&amp; !vegan) ||
+    containsBacon;
+
+bobLikes() =&gt;
+    isDeepFried || (hasPieCrust &amp;&amp; !vegan) || containsBacon;
+</code></pre>
+<p>斷行時內縮 4 格。</p>
+</li>
+</ul>
+<p>Place ternary operators on the next line in a multi-line expression.</p>
+<ul>
+<li>Also, if you break the line before one of the operators, BREAK AROUND BOTH. 要斷就全斷!<pre><code>return someCondition
+    ? whenTrue
+    : whenFalse;
+</code></pre>
+</li>
+</ul>
+<p>Place the <code>.</code> on the next line in a multi-line expression.</p>
+<pre><code>    someVeryLongVariableName.withAVeryLongPropertyName
+        .aReallyLongMethodName(args);
+</code></pre>
+<p>Format constructor initialization lists with each field on its own line.</p>
+<pre><code>MyClass()
+    : firstField = 'some value',
+      secondField = 'another',
+      thirdField = 'last' {
+  // ...
+}
+</code></pre>
+<ul>
+<li>Note that the <code>:</code> should be wrapped to the next line and indented FOUR SPACES. Fields should all LINE UP (so all but the first field end up indented SIX SPACES).</li>
+</ul>
+<p>Split EVERY element in a collection IF IT DOES NOT FIT ON ONE LINE. 要斷就全斷!</p>
+<ul>
+<li>
+<p>This means after the opening bracket, before the closing one, and after the <code>,</code> for each element.</p>
+<pre><code>mapInsideList([
+  {
+    'a': 'b',
+    'c': 'd'
+  },
+  {
+    'a': 'b',
+    'c': 'd'
+  },
+]);
+</code></pre>
+<p>注意 <code>([ ...])</code> 與 <code>{ ... }</code> 用法上的差別。</p>
+</li>
+</ul>
+<p>Indent block and collection bodies TWO SPACES.</p>
+<pre><code>if (condition) {
+  print('hi');
+}
+
+var compoundsWithLongNames = [
+  buckminsterfullerene,
+  dodecahedrane,
+  olympiadane
+];
+</code></pre>
+<p>Indent switch cases two spaces and case bodies four spaces.</p>
+<pre><code>switch (fruit) {
+  case 'apple':
+    print('delish');
+    break;
+
+  case 'durian':
+    print('stinky');
+    break;
+}
+</code></pre>
+<p>Indent multi-line method cascades TWO SPACES. 這與上面 multi-line expression 折行內縮 4 格的做法不同，可能是 <code>..</code> 視覺上已經也是內縮 4 格的關係。</p>
+<pre><code>buffer
+  ..write('Hello, ')
+  ..write(name)
+  ..write('!');
+</code></pre>
+<p>Indent CONTINUED LINES with AT LEAST FOUR SPACES.</p>
+<pre><code>someVeryLongVariableName.aReallyLongMethodName(
+    arg, anotherArg, wrappedToNextLine);
+</code></pre>
+<ul>
+<li>
+<p>This includes <code>=&gt;</code> as well:</p>
+<pre><code>bobLikes() =&gt;
+    isDeepFried || (hasPieCrust &amp;&amp; !vegan) || containsBacon;
+</code></pre>
+</li>
+<li>
+<p>There are exceptions to this when the expression contains multi-line function or collection literals.</p>
+<pre><code>new Future.delayed(const Duration(seconds: 1), () {
+  print('I am a callback');
+});
+
+args.addAll([ // 符合上面 "Split every element..." 內容 2 格的做法
+  '--mode',
+  'release',
+  '--checked'
+]);
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/effective-dart/style#formatting">Formatting - Effective Dart: Style | Dart</a> #ril</p>
+</li>
+<li>
+<p><a href="https://github.com/dart-lang/linter">dart-lang/linter: Linter for Dart.</a> #ril</p>
+</li>
+<li><a href="https://www.dartlang.org/guides/language/effective-dart/design">Effective Dart: Design | Dart</a> #ril</li>
+</ul>
+<h2 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/language-tour#keywords">Keywords - Language Tour | Dart</a></p>
+<ul>
+<li>
+<p>Avoid using these words as identifiers. However, IF NECESSARY, the keywords marked with superscripts can be identifiers:</p>
+<p>保留字只在某些地方不能用，是其他語言沒見過的；不過數量真的不少!</p>
+<ul>
+<li>Words with the superscript 1 are CONTEXTUAL keywords, which have meaning only in specific places. They’re valid identifiers everywhere.</li>
+<li>
+<p>Words with the superscript 2 are BUILT-IN identifiers. To simplify the task of porting JavaScript code to Dart, these keywords are valid identifiers in most places, but they can’t be used as class or type names, or as import prefixes.</p>
+<p>若連 Dart 轉換的標的也要考量進來，保留字更多了? 不過若限定在 class/type name、import prefix 影響就不大，畢竟 class/type name 通常會以大寫開頭，而 import prefix 通常會簡寫。</p>
+</li>
+<li>
+<p>Words with the superscript 3 are NEWER (相對於 Dart 1.0), LIMITED RESERVED WORDS related to the asynchrony support that was added after Dart’s 1.0 release. You can’t use <code>await</code> or <code>yield</code> as an identifier in any function body marked with <code>async</code>, <code>async*</code>, or <code>sync*</code>. 跟標示有 &ldquo;superscript 1&rdquo; 的狀況類似，其他地方都可以用。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>All other words in the table are RESERVED WORDS, which can’t be identifiers.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.dartlang.org/guides/language/effective-dart/style#identifiers">Identifiers - Effective Dart: Style | Dart</a></p>
+<p>Identifiers come in three flavors in Dart. 都會用到，只是各有場合不同。</p>
+<ul>
+<li><code>UpperCamelCase</code> names capitalize the first letter of each word, including the first.</li>
+<li><code>lowerCamelCase</code> names capitalize the first letter of each word, except the first which is always lowercase, even if it’s an acronym.</li>
+<li><code>lowercase_with_underscores</code> use only lowercase letters, even for acronyms, and separate words with <code>_</code>.</li>
+</ul>
+<p>DO name types using <code>UpperCamelCase</code>.</p>
+<ul>
+<li>
+<p>Classes, enums, typedefs, and type parameters should capitalize the first letter of each word (including the first word), and use no separators. 不過 type parameter 通常只有一個大寫字母。</p>
+<pre><code>class SliderMenu { ... }
+
+class HttpRequest { ... }
+
+typedef Predicate&lt;T&gt; = bool Function(T value);
+</code></pre>
+</li>
+<li>
+<p>This even includes CLASSES intended to be used in METADATA ANNOTATIONS.</p>
+<pre><code>class Foo {
+  const Foo([arg]);
+}
+
+@Foo(anArg)
+class A { ... }
+
+@Foo()
+class B { ... }
+</code></pre>
+<p>If the annotation class’s constructor takes no parameters, you might want to create a separate <code>lowerCamelCase</code> constant for it.</p>
+<pre><code>const foo = Foo();
+
+@foo
+class C { ... }
+</code></pre>
+<p><code>@deprecated</code> 跟 <code>@override</code> 應該就是這種狀況，否則就是例外了。</p>
+</li>
+</ul>
+<p>DO name libraries, packages, directories, and source files using <code>lowercase_with_underscores</code>.</p>
+<ul>
+<li>
+<p>Some file systems are not case-sensitive, so many projects require FILENAMES TO BE ALL LOWERCASE. Using a separating character allows names to still be readable in that form. Using underscores as the separator ensures that the name is STILL A VALID DART IDENTIFIER, which may be helpful if the language later supports SYMBOLIC IMPORTS. 原來是 FS 不一定區分大小寫的考量!</p>
+<pre><code>library peg_parser.source_scanner;
+
+import 'file_system.dart';
+import 'slider_menu.dart';
+</code></pre>
+</li>
+<li>
+<p>This guideline specifies how to name a library if you choose to name it. It is fine to omit the <code>library</code> directive in a file if you want. ??</p>
+</li>
+</ul>
+<p>DO name import prefixes using <code>lowercase_with_underscores</code>.</p>
+<pre><code>import 'dart:math' as math;
+import 'package:angular_components/angular_components'
+    as angular_components;
+import 'package:js/js.dart' as js;
+</code></pre>
+<p>DO name OTHER IDENTIFIERS using <code>lowerCamelCase</code>.</p>
+<ul>
+<li>Class members, top-level definitions, variables, parameters, and named parameters should capitalize the first letter of each word except the first word, and use no separators.<pre><code>var item;
+
+HttpRequest httpRequest;
+
+void align(bool clearItems) {
+  // ...
+}
+</code></pre>
+</li>
+</ul>
+<p>PREFER using <code>lowerCamelCase</code> for constant names.</p>
+<ul>
+<li>
+<p>In NEW CODE, use <code>lowerCamelCase</code> for constant variables, INCLUDING ENUM VALUES.</p>
+<pre><code>const pi = 3.14;
+const defaultTimeout = 1000;
+final urlScheme = RegExp('^([a-z]+):');
+
+class Dice {
+  static final numberGenerator = Random();
+}
+</code></pre>
+</li>
+<li>
+<p>You may use <code>SCREAMING_CAPS</code> for consistency with existing code, as in the following cases:</p>
+<ul>
+<li>When adding code to a file or library that already uses <code>SCREAMING_CAPS</code>.</li>
+<li>When generating Dart code that’s parallel to Java code — for example, in enumerated types generated from <a href="https://pub.dartlang.org/packages/protobuf">protobufs</a>.</li>
+</ul>
+</li>
+<li>
+<p>Note: We initially used Java’s <code>SCREAMING_CAPS</code> style for constants. We changed for a few reasons:</p>
+<ul>
+<li><code>SCREAMING_CAPS</code> looks bad for many cases, particularly enum values for things like CSS colors.</li>
+<li>Constants are often changed to final non-const variables, which would necessitate a name change.</li>
+<li>The <code>values</code> property automatically defined on an enum type is const and lowercase.</li>
+</ul>
+<p>有點難被說服，難怪這個 rule 是 PREFER 而非 DO &hellip;</p>
+</li>
+</ul>
+<p>DO capitalize acronyms and abbreviations longer than two letters like words.</p>
+<ul>
+<li>Capitalized acronyms can be hard to read, and MULTIPLE ADJACENT ACRONYMS can lead to ambiguous names. For example, given a name that starts with HTTPSFTP, there’s no way to tell if it’s referring to HTTPS FTP or HTTP SFTP.</li>
+<li>
+<p>To avoid this, acronyms and abbreviations are capitalized like REGULAR WORDS, except for two-letter acronyms. (Two-letter abbreviations like ID and Mr. are still capitalized like words.)</p>
+<pre><code>HttpConnectionInfo &lt;-- 做為 type 時，採 UpperCamelCase，HTTP 視為一般單字
+uiHandler          &lt;-- 做為其他 identifier 時，採 lowerCamelCase，且 UI 比較短所以一起變小寫
+IOStream           &lt;-- 做為 type 時，採 UpperCamelCase，但 IO 比較短所以一起變大寫
+HttpRequest
+Id
+DB
+</code></pre>
+<p>最後 <code>Id</code> 跟 <code>DB</code> 的例子很難懂? 因為 ID 是 abbreviation 而 DB 是 acronym 的關係?? 有趣的是，這個 style 沒有對應的 linter rule。</p>
+</li>
+</ul>
+<p>DON’T use prefix letters.</p>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Hungarian_notation">Hungarian notation</a> and other schemes arose in the time of <a href="https://en.wikipedia.org/wiki/BCPL">BCPL</a>, when the compiler didn’t do much to help you understand your code. Because Dart can tell you the type, scope, mutability, and other properties of your declarations, there’s NO REASON TO ENCODE THOSE PROPERTIES IN IDENTIFIER NAMES.</p>
+<p>例如 <code>defaultTimeout</code> 不要寫成 <code>iDefaultTimeout</code>；不過當初加前綴的想法是增加 source code 自身的可讀性，跟 compiler 沒什麼關係不是?</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="comment">Comment ??<a class="headerlink" href="#comment" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#comments">Comments - Language Tour | Dart</a> #ril</li>
+</ul>
+<h2 id="variable">Variable ??<a class="headerlink" href="#variable" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#variables">Variables, Default value - Language Tour | Dart</a> #ril</li>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#final-and-const">Final and const - Language Tour | Dart</a> #ril</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://dart-lang.github.io/linter/">Linter for Dart</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="http://dart-lang.github.io/linter/lints/">Lint Rules</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

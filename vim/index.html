@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/vim/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Vim - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/vim.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#vim">Vim</a></li>
+            <li class="second-level"><a href="#distributions">發行版</a></li>
+                
+            <li class="second-level"><a href="#getting-started">新手上路 ??</a></li>
+                
+            <li class="second-level"><a href="#key-mapping">Key Mapping ??</a></li>
+                
+            <li class="second-level"><a href="#configuration">Configuration ??</a></li>
+                
+            <li class="second-level"><a href="#line-wrapping">Line Wrapping</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="vim">Vim<a class="headerlink" href="#vim" title="Permanent link"> #</a></h1>
+<h2 id="distributions">發行版<a class="headerlink" href="#distributions" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="../neovim/">Neovim</a> - 威脅到 Vim 使其在 10 年後推出 Vim 8</li>
+<li><a href="https://spacevim.org/">SpaceVim</a></li>
+<li><a href="../spf13-vim/">spf13-vim</a> - 最後一個 commit (<code>1ce5f23</code>) 在 2016-02-14</li>
+</ul>
+<hr />
+<p>參考資料：</p>
+<ul>
+<li><a href="https://hackernoon.com/modern-day-vim-ab4d3aa0cf6b">Modern Day Vim – Hacker Noon</a> (2018-09-09) History 提到為什麼 Neovim 會在 2014 冒出來，又為何會促使 Vim 在 10 年後推出 Vim 8 與 Neovim 應戰。</li>
+<li><a href="https://laravel-news.com/vim-8-0-is-released">Vim 8.0 is released - Laravel News</a> (2016-09-19) Vim 8 在 10 年後才出現 #ril</li>
+</ul>
+<h2 id="getting-started">新手上路 ??<a class="headerlink" href="#getting-started" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://www.vim.org/docs.php">Vim documentation : vim online</a> #ril<ul>
+<li>Vim&rsquo;s online documentation system, accessible via the <code>:help</code> command, is an extensive CROSS-REFERENCED and hyperlinked reference. It&rsquo;s kept up-to-date with the software and can answer almost any question about Vim&rsquo;s functionality. An up-to-date version of the help, with hyperlinks, can be found on <a href="http://vimhelp.appspot.com/">appspot</a>. 後者網頁方便在文件內引用，官方文件也是用 appspot 在網頁上引用自己的 help 文件。</li>
+<li>Especially useful for absolute beginners who fear being bored by learning the basic commands: <a href="http://vim-adventures.com/">Vim Adventure</a> (用遊戲帶指令). Starts with teaching you h, j, k and l movement commands and practice them in an adventure style interactive play. Less playfull, but a bit faster to go through is the Vim tutor. See <code>:help tutor</code> inside Vim. (執行 <code>vimtutor</code> 直接在文件內操作)</li>
+</ul>
+</li>
+<li><a href="https://vimhelp.appspot.com/vim_faq.txt.html">Vim: vim_faq.txt</a> #ril</li>
+</ul>
+<h2 id="key-mapping">Key Mapping ??<a class="headerlink" href="#key-mapping" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://learnvimscriptthehardway.stevelosh.com/chapters/03.html">Basic Mapping / Learn Vimscript the Hard Way</a> #ril</li>
+<li><a href="http://learnvimscriptthehardway.stevelosh.com/chapters/04.html">Modal Mapping / Learn Vimscript the Hard Way</a> #ril</li>
+<li><a href="http://learnvimscriptthehardway.stevelosh.com/chapters/05.html">Strict Mapping / Learn Vimscript the Hard Way</a> #ril</li>
+</ul>
+<h2 id="configuration">Configuration ??<a class="headerlink" href="#configuration" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="http://vim-bootstrap.com/">Vim Bootstrap</a> 產生 <code>.vimrc</code> #ril</li>
+<li><a href="https://github.com/amix/vimrc">amix/vimrc: The ultimate Vim configuration: vimrc</a> #ril</li>
+<li><a href="https://github.com/square/maximum-awesome">square/maximum-awesome: Config files for vim and tmux.</a> #ril</li>
+</ul>
+<h2 id="line-wrapping">Line Wrapping<a class="headerlink" href="#line-wrapping" title="Permanent link"> #</a></h2>
+<p>若撰寫 Markdown 時有依循 <a href="https://github.github.com/gfm/#motivation">four-space rule</a>，搭配下面的組態，會讓你的 Markdown 維持可讀性，編輯被折行的內容也很方便：</p>
+<pre><code>set linebreak
+set breakindent
+set breakindentopt=shift:2
+nmap &lt;up&gt; gk
+nmap &lt;down&gt; gj
+</code></pre>
+
+<p>用起來像這個樣子：</p>
+<pre><code>⎵⎵⎵⎵
+  - Line 1 ...      &lt;-- 內文內縮 4 格 (不含項目符號)
+    Line 1 (cont.)  &lt;-- 折行進一步內縮與內文對齊；用方向鍵上下移動
+⎵⎵⎵⎵⎵⎵⎵⎵
+        Indented code block  &lt;-- 程式碼區塊再內縮 4 格
+        ...
+⎵⎵⎵⎵
+    With multiple paragraphs &lt;-- 清單的內文與項目的內文對齊
+</code></pre>
+
+<p>不過有點兩難的是，加了 <code>linebreak</code> 會讓連續的中文字找不到斷點，但不加 <code>linebreak</code> 又會讓一個英文單字被斷在中間 ??</p>
+<hr />
+<p>參考資料：</p>
+<ul>
+<li>
+<p><a href="http://vimhelp.appspot.com/options.txt.html#%27linebreak%27">linebreak - Vim: options.txt</a></p>
+<ul>
+<li>
+<p><code>linebreak</code> <code>lbr</code> - boolean (default off), local to window.</p>
+</li>
+<li>
+<p>If on, Vim will wrap long lines at a character in <code>breakat</code> rather than at the last character that fits on the screen.</p>
+<p>Unlike <code>wrapmargin</code> and <code>textwidth</code>, this does not insert <code>&lt;EOL&gt;</code>s in the file, it only affects the WAY THE FILE IS DISPLAYED, not its contents.</p>
+<p>If <code>breakindent</code> is set, line is VISUALLY INDENTED. Then, the value of <code>showbreak</code> is used to put in front of wrapped lines. This option is not used when the <code>wrap</code> option is off.</p>
+<p>在視窗邊界處折行，搭配 <code>breakindent</code> 可以讓拆行跟行首對齊。雖然 <code>showbreak</code> 可以在拆行前安插一些字元，但 <code>breakindentopt</code> 可以進一步讓折行內縮，效果會更好。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://vimhelp.org/options.txt.html#%27breakat%27">breakat - Vim: options.txt</a></p>
+<ul>
+<li>
+<p><code>breakat</code> <code>brk</code> - string  (default <code>" ^I!@*-+;:,./?"</code>), global, not available when compiled without the <code>+linebreak</code> feature</p>
+</li>
+<li>
+<p>This option lets you choose which characters might cause a line break if <code>linebreak</code> is on. Only works for ASCII and also for 8-bit characters when &lsquo;encoding&rsquo; is an 8-bit encoding.</p>
+<p>難怪中文字不會斷；上面 &ldquo;only works for ASCII &hellip;&rdquo; 的說法似乎只針對 8-bit encoding ??</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/9713967/">how can i intuitively move cursor in vim?(not by line) - Stack Overflow</a></p>
+<ul>
+<li>
+<p>Greg Hewgill: In Vim, the gj and gk commands move by line on the screen rather than by line in the file. 可以考慮重新對應 <code>j</code>、<code>k</code>:</p>
+<pre><code>:map j gj
+:map k gk
+</code></pre>
+</li>
+<li>
+<p>Rook: Normally, <code>k</code> and <code>j</code> move you up and down. If you want to navigate wrapped lines use <code>gk</code> or <code>gj</code>, or just as some like it, map it to for example, the cursor keys. 若平常就習慣用方向鍵，這個設定更直覺了!!</p>
+<pre><code>nmap &lt;up&gt; gk
+nmap &lt;down&gt; gj
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/neovim/neovim/pull/7850">[RFC] vim-patch:8.0.0380,8.0.0381,8.0.0385,8.0.0389,8.0.0391,8.0.0406 by ckelsel · Pull Request #7850 · neovim/neovim</a> #ril</p>
+</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://www.vim.org/">vim.org</a></li>
+<li><a href="https://github.com/vim/vim">vim/vim - GitHub</a></li>
+</ul>
+<p>社群：</p>
+<ul>
+<li><a href="https://vi.stackexchange.com/">Vi and Vim Stack Exchange</a></li>
+</ul>
+<p>文件：</p>
+<ul>
+<li><a href="http://vimhelp.appspot.com/">Vim Help Files</a> - 同 <code>:help</code> 的內容</li>
+<li><a href="https://vimhelp.appspot.com/vim_faq.txt.html">Vim: vim_faq.txt</a></li>
+</ul>
+<p>學習資源：</p>
+<ul>
+<li><a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki">Vim Tips Wiki</a></li>
+<li><a href="https://vim-adventures.com/">VIM Adventures</a> - 遊戲中學習</li>
+</ul>
+<p>更多：</p>
+<ul>
+<li><a href="../vim-visual/">Visual Mode</a></li>
+<li><a href="../vim-diff/">Diff</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="http://vimhelp.appspot.com/map.txt.html">Vim: map.txt</a> - Key mapping</li>
+<li><a href="http://vimhelp.appspot.com/options.txt.html">Vim: options.txt</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/gitlab/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>GitLab - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/gitlab.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#gitlab">GitLab</a></li>
+            <li class="second-level"><a href="#installation">安裝設定</a></li>
+                
+                <li class="third-level"><a href="#gitlab-ce">如何安裝 GitLab CE?</a></li>
+                <li class="third-level"><a href="#ubunut-gitlab-ce">如何在 Ubunut 上安裝 GitLab CE?</a></li>
+            <li class="second-level"><a href="#github">如何匯入 GitHub 的專案?</a></li>
+                
+            <li class="second-level"><a href="#issue">什麼是 Issue??</a></li>
+                
+            <li class="second-level"><a href="#issue-board">什麼是 Issue Board ??</a></li>
+                
+            <li class="second-level"><a href="#quick-action">Quick Action ??</a></li>
+                
+            <li class="second-level"><a href="#sub-issue-task">如何實作 Sub-issue 或 task??</a></li>
+                
+            <li class="second-level"><a href="#issue-tempalte">如何建立 Issue Tempalte??</a></li>
+                
+            <li class="second-level"><a href="#gitlab-cicd">GitLab 在 CI/CD 這一塊的定位是什麼?</a></li>
+                
+            <li class="second-level"><a href="#jenkins-job-merge-request">如何用一個 Jenkins job 測試不同的 merge request 並回報測試結果？</a></li>
+                
+            <li class="second-level"><a href="#deploy-key-jenkins-source-code">如何利用 Deploy Key 從 Jenkins 拿到 source code?</a></li>
+                
+            <li class="second-level"><a href="#pipeline">什麼是 pipeline??</a></li>
+                
+            <li class="second-level"><a href="#issues-task-management-trello">如何拿 Issues 來實現 task management，甚至取代 Trello?</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="gitlab">GitLab<a class="headerlink" href="#gitlab" title="Permanent link"> #</a></h1>
+<ul>
+<li><a href="https://about.gitlab.com/pricing/#gitlab-com">GitLab Pricing | GitLab</a> #ril<ul>
+<li>可以用 Google、Twitter、GitHub、Bitbucket 帳戶登入。</li>
+<li>Free plan 只限制每個 group 每月只能用 2000 CI pipeline minutes (執行在 shared runner 上)，可以有不限數量的 private project 跟 collaborator；一個人可以有多個 group??</li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">安裝設定<a class="headerlink" href="#installation" title="Permanent link"> #</a></h2>
+<h3 id="gitlab-ce">如何安裝 GitLab CE?<a class="headerlink" href="#gitlab-ce" title="Permanent link"> #</a></h3>
+<ul>
+<li>Installation methods for GitLab | GitLab <a href="https://about.gitlab.com/installation/">https://about.gitlab.com/installation/</a> 推薦用 Omnibus package?? 除 Ubuntu、Debian、CentOS 6/7 還有 Respberry Pi 2、Docker #ril</li>
+</ul>
+<h3 id="ubunut-gitlab-ce">如何在 Ubunut 上安裝 GitLab CE?<a class="headerlink" href="#ubunut-gitlab-ce" title="Permanent link"> #</a></h3>
+<pre><code>$ sudo apt-get install ca-certificates curl openssh-server # postfix 不一定要裝?
+$ cd /tmp &amp;&amp; curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+$ sudo bash /tmp/script.deb.sh # 主要是設定 GitLab 的 repository
+$ sudo apt-get install gitlab-ce
+... GitLab was unable to detect a valid hostname for your instance...
+$ # 手動修改 `/etc/gitlab/gitlab.rb` 裡的 `external_url` (先改成 IP)
+$ sudo gitlab-ctl reconfigure # 完成初始化
+</code></pre>
+
+<p>一開始存取時，會出現 &ldquo;Please create a password for your new account&rdquo; 的提示，其實是要修改 <code>root</code> 的密碼。</p>
+<p>或許是因為沒安裝 postfix 的關係，新增使用者也無法自訂密碼 (無法寄出信件)，等同於無法新增使用者。</p>
+<p>參考資料：</p>
+<ul>
+<li>How To Install and Configure GitLab on Ubuntu 16.04 | DigitalOcean (2016-10-14) <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu-16-04</a> 安裝步驟可行，只是少了調整 <code>external_url</code> 的動作。</li>
+<li>Installation methods for GitLab | GitLab <a href="https://about.gitlab.com/installation/#ubuntu">https://about.gitlab.com/installation/#ubuntu</a> 針對 GitLab EE，安裝 <code>gitlab-ee</code> 時會先設定 <code>EXTERNAL_URL</code>。</li>
+</ul>
+<h2 id="github">如何匯入 GitHub 的專案?<a class="headerlink" href="#github" title="Permanent link"> #</a></h2>
+<ul>
+<li>將 GitHub 專案 clone 到本地端。</li>
+<li>增加一個 remote 後直接推上去<ul>
+<li><code>git remote add gitlab git@gitlab.example.com:group/project.git</code></li>
+<li><code>git push gitlab master</code></li>
+</ul>
+</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li>New Project 會有 Import project from &hellip; 的提示，支援 GitHub、Bitbucket 等。</li>
+<li>之前匯入 GitHub 專案的印象，提供 Personal Access Token 可以列出自己的 project，但匯入時 username/project 會直接對應到 GitLab 裡，如果要去掉 username/org 那一層，可能得要自己先 clone 再 push。</li>
+</ul>
+<h2 id="issue">什麼是 Issue??<a class="headerlink" href="#issue" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://docs.gitlab.com/ce/user/project/issues/">Issues - GitLab Documentation</a> #ril</li>
+<li><a href="https://about.gitlab.com/2016/03/03/start-with-an-issue/">Always start with an issue | GitLab</a> (2016-03-03) #ril</li>
+</ul>
+<h2 id="issue-board">什麼是 Issue Board ??<a class="headerlink" href="#issue-board" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/38337">One group level issue board in CE (#38337) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> EE 已經支援，但 CE 還沒有? #ril</li>
+</ul>
+<h2 id="quick-action">Quick Action ??<a class="headerlink" href="#quick-action" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/project/quick_actions.html">GitLab quick actions | GitLab</a> #ril</li>
+<li>雖然不會被存起來，但可以養成為變更留下 comment 說明 &ldquo;為什麼&rdquo;，而不只記錄什麼時候誰做了這個變更，但事後又想不起來為什麼。</li>
+<li><a href="https://docs.gitlab.com/ee/user/project/quick_actions.html">GitLab quick actions - GitLab Documentation</a> 可以用在 issue 或 merge request 的 comment 裡，但要自成一行才有作用。由於是 textual shortcut，所以並不會真的被存起來。</li>
+<li><a href="http://docs.gitlab.com/ce/user/project/description_templates.html">Description templates - GitLab Documentation</a> 可以用在 issue templae 裡，官方的說明也出現 <code>/cc</code> 的用法。</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/24615">Add a `/cc` quick action (#24615) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> <code>/cc</code> 的用法只是一種習慣，並沒有實質作用 #ril</li>
+</ul>
+<h2 id="sub-issue-task">如何實作 Sub-issue 或 task??<a class="headerlink" href="#sub-issue-task" title="Permanent link"> #</a></h2>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html#task-lists">Task Lists - Markdown - GitLab Documentation</a> 本身就是用來做 task，若是同一個 list 條列其他 issue，不就是 sub-issue 了嗎，完成還會被劃上一條線!</li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/4182">User should be able to create sub-issue of an issue. (#4182) · Issues · GitLab.org / GitLab Community Edition · GitLab</a> #ril</li>
+</ul>
+<h2 id="issue-tempalte">如何建立 Issue Tempalte??<a class="headerlink" href="#issue-tempalte" title="Permanent link"> #</a></h2>
+<ul>
+<li>每個專案都要設定一次有點麻煩? 或許可以共用一個 template project 做為起點? 最簡單的方法就是用 wiki 建立一個 template，複製貼上即可。</li>
+<li><a href="https://docs.gitlab.com/ce/user/project/issues/#issue-templates">Issue templates - Issues - GitLab Documentation</a> #ril</li>
+<li><a href="http://docs.gitlab.com/ce/user/project/description_templates.html">Description templates - GitLab Documentation</a> 用 <code>.gitlab</code> 下的 <code>.md</code> 來實現，可以內含 quick action 還不錯 #ril</li>
+<li><a href="https://docs.gitlab.com/ce/development/database_merge_request_checklist.html">Merge Request Checklist - GitLab Documentation</a> 用 merge request 的 template 實作 checklist 還滿不錯的!</li>
+</ul>
+<h2 id="gitlab-cicd">GitLab 在 CI/CD 這一塊的定位是什麼?<a class="headerlink" href="#gitlab-cicd" title="Permanent link"> #</a></h2>
+<p>參考資料：</p>
+<ul>
+<li>GitLab Jenkins Integration | GitLab <a href="https://about.gitlab.com/features/jenkins/">https://about.gitlab.com/features/jenkins/</a></li>
+<li>Jenkins CI service - GitLab Documentation <a href="https://docs.gitlab.com/ee/integration/jenkins.html">https://docs.gitlab.com/ee/integration/jenkins.html</a> #ril</li>
+<li>GitLab Continuous Integration &amp; Deployment | GitLab <a href="https://about.gitlab.com/features/gitlab-ci-cd/">https://about.gitlab.com/features/gitlab-ci-cd/</a> #ril</li>
+<li>在 GitLab 的 UI 左側看到 CI/CD，展開有 Pipelines、Jobs、Schedules、Environments、Charts，其中 pipeline 跟 job 跟 CI 是什麼關係?</li>
+</ul>
+<h2 id="jenkins-job-merge-request">如何用一個 Jenkins job 測試不同的 merge request 並回報測試結果？<a class="headerlink" href="#jenkins-job-merge-request" title="Permanent link"> #</a></h2>
+<ul>
+<li>GitLab plugin 似乎會將 webhook payload 的一些 attribute 轉成 <code>gitlabSourceBrance</code>、<code>gitlabTargetBranch</code> 等不同的環境變數，若要同時應付 push event 與 merge request event 的狀況。</li>
+<li>jenkinsci/gitlab-plugin: A Jenkins plugin for interfacing with GitLab <a href="https://github.com/jenkinsci/gitlab-plugin">https://github.com/jenkinsci/gitlab-plugin</a> 提到 branch specifier 可以填入 <code>origin/${gitlabSourceBranch}</code>。</li>
+<li>Setup Example · jenkinsci/gitlab-plugin Wiki <a href="https://github.com/jenkinsci/gitlab-plugin/wiki/Setup-Example">https://github.com/jenkinsci/gitlab-plugin/wiki/Setup-Example</a> 也是提到 <code>origin/${gitlabSourceBranch}</code> 的用法，但最後提到 Jenkins 跟 GitLab 綁得太緊，若不是由 GitLab 觸發，並不會有 <code>origin/${gitLabSourceBranch}</code>。</li>
+</ul>
+<pre><code>  - Webhook1 (Merge Request Events) -&gt; build-xxx (checkout refs/heads/master + Accepted Merge Request Events, only for master branch) -&gt; deploy-xxx-prod
+
+  - Webhook2 (Merge Request Events) -&gt; build-xxx-dev (checkout refs/heads/dev + Accepted Merge Request Events, only for dev branch) -&gt; deploy-xxx-staging
+
+  - Webhook3 (Merge Request + Push Events) -&gt; build-xxx-pr (checkout refs/heads/${gitlabSourceBranch} + Opened Merge Request Events + Rebuild open Merge Requests on push to source branch, for all branches)
+</code></pre>
+
+<h2 id="deploy-key-jenkins-source-code">如何利用 Deploy Key 從 Jenkins 拿到 source code?<a class="headerlink" href="#deploy-key-jenkins-source-code" title="Permanent link"> #</a></h2>
+<ul>
+<li>SSH - GitLab Documentation <a href="https://docs.gitlab.com/ce/ssh/README.html#deploy-keys">https://docs.gitlab.com/ce/ssh/README.html#deploy-keys</a><ul>
+<li>透過 deploy key (就是 SSH key pair) 可以取得多個 project 的 read-only 或 read-write access，不需要為了 CI 建立 dummy user account。</li>
+<li>Project owner/master 可以在 Settings &gt; Repository 建立 deploy key (pair) - 貼上 public key，之後用對應的 private key 連線時，就有存取該 project 的權限。</li>
+<li>同一個 public key 只能建立一個 deploy key，但一個 project 可以讓多個 deploy key 存取；畫面下方有 &ldquo;Enabled deploy keys for this project&rdquo; (可以存取這個 project 的 deploy keys，按 Disable 可以取消)、&rdquo;Deploy keys from projects you have access to&rdquo; (來自有權存取的專案的 deploy keys) 與 &ldquo;Public deploy keys available to any project&rdquo; (怎麼來的?)</li>
+</ul>
+</li>
+<li>Continuous Integration with Jenkins and GitLab – Tom Kent – Medium <a href="https://medium.com/@teeks99/continuous-integration-with-jenkins-and-gitlab-fa770c62e88a">https://medium.com/@teeks99/continuous-integration-with-jenkins-and-gitlab-fa770c62e88a</a> Deploy key 在 Jenkins 端是走 SSH Username with private key 的 credential? username 用 <code>git</code>；大概是因為 repository URL 用 <code>git@...</code> 的關係?</li>
+</ul>
+<h2 id="pipeline">什麼是 pipeline??<a class="headerlink" href="#pipeline" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://docs.gitlab.com/ce/ci/pipelines.html">Introduction to pipelines and jobs - GitLab Documentation</a> #ril</li>
+</ul>
+<h2 id="issues-task-management-trello">如何拿 Issues 來實現 task management，甚至取代 Trello?<a class="headerlink" href="#issues-task-management-trello" title="Permanent link"> #</a></h2>
+<ul>
+<li>在 Group level 定義通用的 labels，優先處理 bug、request 等；To Do 跟 Doing 也可以嗎?</li>
+<li>善用 group 的 milestone，建立 sprint 將要處理的 issue 拉進 milestone 裡。</li>
+<li>可惜 Issue &gt; Board 不能跨 project 使用?</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<p>更多：</p>
+<ul>
+<li><a href="../gitlab-wiki/">Wiki</a></li>
+<li><a href="../gitlab-ci/">CI/CD</a></li>
+</ul>
+<p>手冊：</p>
+<ul>
+<li><a href="https://www.emojicopy.com/">EmojiCopy</a> (<a href="https://docs.gitlab.com/ee/user/markdown.html#emoji">GitLab 文件推薦的查詢界面</a>)</li>
+<li><a href="https://docs.gitlab.com/ee/user/project/quick_actions.html">GitLab quick actions - GitLab Documentation</a></li>
+<li><a href="https://about.gitlab.com/releases/">GitLab releases</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

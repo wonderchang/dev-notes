@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="canonical" href="https://imsardine.github.io/dev-notes/html-javascript/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>HTML / JavaScript - 建造以學習 | 在電梯裡遇見雙胞胎</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/3.003/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.min.css">
+    <link href="../cinder_extra.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.28/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">建造以學習 | 在電梯裡遇見雙胞胎</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/imsardine/dev-notes/blob/source/docs/html-javascript.md">Edit on imsardine/dev-notes</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#html-javascript">HTML / JavaScript</a></li>
+            <li class="second-level"><a href="#ltscriptgt">&lt;script&gt; ??</a></li>
+                
+            <li class="second-level"><a href="#source-map">Source Map ??</a></li>
+                
+            <li class="second-level"><a href="#reference">參考資料</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="html-javascript"><a href="../html/">HTML</a> / <a href="../javascript/">JavaScript</a><a class="headerlink" href="#html-javascript" title="Permanent link"> #</a></h1>
+<h2 id="ltscriptgt"><code>&lt;script&gt;</code> ??<a class="headerlink" href="#ltscriptgt" title="Permanent link"> #</a></h2>
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics#A_hello_world_example">A &ldquo;hello world&rdquo; example - JavaScript basics | MDN</a></p>
+<ul>
+<li>Next, in your <code>index.html</code> file enter the following element on a new line just before the closing <code>&lt;/body&gt;</code> tag: <code>&lt;script src="scripts/main.js"&gt;&lt;/script&gt;</code></li>
+<li>Note: The reason we&rsquo;ve put the <code>&lt;script&gt;</code> element NEAR THE BOTTOM OF THE HTML FILE is that HTML is loaded by the browser in the order it appears in the file. If the JavaScript is loaded first and it is supposed to affect the HTML below it, it might not work, as the JavaScript would be loaded before the HTML it is supposed to work on. Therefore, putting JavaScript near the bottom of the HTML page is OFTEN THE BEST STRATEGY. 如果載入的 JavaScript 會操作到 HTML，沒有放 <code>&lt;/body&gt;</code> 結束前，就會出錯。</li>
+</ul>
+</li>
+<li>
+<p><a href="https://learn.jquery.com/about-jquery/how-jquery-works/#launching-code-on-document-ready">Launching Code on Document Ready - How jQuery Works | jQuery Learning Center</a> 一樣要考量 &ldquo;code runs after the browser finishes loading the document&rdquo;，不過 jQuery 提供有 <code>ready</code> event，確保程式在 document ready 後才會執行，就不會出錯；這種情況下，<code>&lt;script&gt;</code> 就不一定要擺 <code>&lt;/body&gt;</code> 前。</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code>: The Script element | MDN</a> #ril</p>
+</li>
+<li>
+<p><a href="https://www.w3.org/TR/html4/interact/scripts.html">Scripts in HTML documents</a></p>
+</li>
+<li>
+<p><a href="http://www.namasteui.com/why-self-closing-script-tags-doesnt-work/">Why self-closing script tags doesn&rsquo;t work?</a> (2016-12-22)</p>
+<ul>
+<li>一開始就講 &ldquo;Self-closing script tag are not supported by all browsers as this may contain inline code and HTML is not smart enough to turn that feature on or off.&rdquo; 而 not smart enough 指的是 &ldquo;based on the presence of an attribute&rdquo; &ndash; 動態根據是否給 <code>src</code> attribute 來決定 end tag 是否可以省略。</li>
+<li>Basically, the concept of self-closing tags is an XML concept. You can use them in XHTML if the document is served with an XML content-type but not if it is served as text/html. 若視為 XML，寫成 <code>&lt;script /&gt;</code> 倒是沒問題，但 HTML (<code>text/html</code>) 就不行。</li>
+</ul>
+</li>
+<li><a href="http://blogs.perl.org/users/mike_friedman/2009/12/that-annoying-non-self-closing-script-tag.html">That annoying non-self-closing <code>&lt;script&gt;</code> tag | Mike Friedman [blogs.perl.org]</a> (2009-12-11) 提到 <code>&lt;link&gt;</code>，但又說 No browser supports loading Javascript via a <code>&lt;link&gt;</code> tag?</li>
+<li><a href="https://stackoverflow.com/questions/69913/">javascript - Why don&rsquo;t self-closing script tags work? - Stack Overflow</a> #ril<ul>
+<li>為什麼寫成 <code>&lt;script src="path/to/js" /&gt;</code> 不行，要寫成 <code>&lt;script src="path/to/js"&gt;&lt;script&gt;</code> 才行?</li>
+<li>Adam Ness: 早期 self-closing script tag 在 Chrome 可以作用，但近期開始出問題 (2010-10-24)</li>
+<li>DOM: 不只是 script tag，也不認為 self-closing div 可以作用。</li>
+<li>squadette: 引用 XHTML 1 spec 的 С.3. Element Minimization and Empty Element Content 提到 &ldquo;Given an empty instance of an element whose content model is not EMPTY (for example, an empty title or paragraph) do not use the minimized form (e.g. use <code>&lt;p&gt; &lt;/p&gt;</code> and not <code>&lt;p /&gt;</code>).&rdquo;，但下面不少人反駁 &ldquo;do not&rdquo; 不等同於 &ldquo;must not&rdquo;，不過 4.3. For non-empty elements, end tags are required 似乎給了答案? 除非 DTD 裡宣為 EMPTY，否則 end tag 不能省略。</li>
+<li>Sheepy: 說得很詳細，但看不懂 XD</li>
+<li>defau1t: HTML 已經有 <code>&lt;link&gt;</code> 可以引用 resource，而且它可以 self-closing，例如 <code>&lt;link type="text/javascript" rel ="script" href="/path/tp/javascript" /&gt;</code>，但 <code>&lt;script&gt;</code> 不能 self-closing。但 Dave Lawrence: 因為有個 predefined <code>&lt;script&gt;</code> 可以用來載 script，為什麼要用其他方式?</li>
+</ul>
+</li>
+</ul>
+<h2 id="source-map">Source Map ??<a class="headerlink" href="#source-map" title="Permanent link"> #</a></h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">Use a source map | MDN</a> #ril</li>
+<li><a href="https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">Introduction to JavaScript Source Maps - HTML5 Rocks</a> (2012-03-21) #ril</li>
+</ul>
+<h2 id="reference">參考資料<a class="headerlink" href="#reference" title="Permanent link"> #</a></h2>
+<p>手冊：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><script>: The Script element | MDN</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        
+        
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <!-- <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script> -->
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
